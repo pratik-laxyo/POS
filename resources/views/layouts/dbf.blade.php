@@ -83,32 +83,32 @@
                           Items</a>
                        </li>
                        <li class="">
-                          <a href="#" title="Manager" class="menu-icon">
+                          <a href="{{ route('manager.index') }}" title="Manager" class="menu-icon">
                           <img id="menuicon_manager" src="{{ asset('dbf-style/images/menubar/manager.png') }}" border="0" alt="Module Icon"><br>
                           Manager</a>
                        </li>
                        <li class="">
-                          <a href="#" title="Item Kits" class="menu-icon">
+                          <a href="{{ route('item-kits.index') }}" title="Item Kits" class="menu-icon">
                           <img id="menuicon_item_kits" src="{{ asset('dbf-style/images/menubar/item_kits.png') }}" border="0" alt="Module Icon"><br>
                           Item Kits</a>
                        </li>
                        <li class="">
-                          <a href="#" title="Reports" class="menu-icon">
+                          <a href="{{ route('reports.index') }}" title="Reports" class="menu-icon">
                           <img id="menuicon_reports" src="{{ asset('dbf-style/images/menubar/reports.png') }}" border="0" alt="Module Icon"><br>
                           Reports</a>
                        </li>
                        <li class="">
-                          <a href="#" title="Receivings" class="menu-icon">
+                          <a href="{{ route('receivings.index') }}" title="Receivings" class="menu-icon">
                           <img id="menuicon_receivings" src="{{ asset('dbf-style/images/menubar/receivings.png') }}" border="0" alt="Module Icon"><br>
                           Receivings</a>
                        </li>
                        <li class="">
-                          <a href="#" title="Sales" class="menu-icon">
+                          <a href="{{ route('sales.index') }}" title="Sales" class="menu-icon">
                           <img id="menuicon_sales" src="{{ asset('dbf-style/images/menubar/sales.png') }}" border="0" alt="Module Icon"><br>
                           Sales</a>
                        </li>
                        <li class="">
-                          <a href="#" title="Office" class="menu-icon">
+                          <a href="{{ route('offices.index') }}" title="Office" class="menu-icon">
                           <img id="menuicon_office" src="{{ asset('dbf-style/images/menubar/office.png') }}" border="0" alt="Module Icon"><br>
                           Office</a>
                        </li>
