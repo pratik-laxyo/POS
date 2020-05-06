@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
-
+use App\Exports\CustomersExport;
+use App\Imports\CustomersImport;
+use App\Exports\CustomersPhoneExport;
+use Maatwebsite\Excel\Facades\Excel;
 class CustomerController extends Controller
 {
     /**
@@ -15,7 +18,7 @@ class CustomerController extends Controller
     public function index()
     {
          $data =  Customer::get();
-        return view("customers.index",compact('data'));
+        return view("customers.index",compact('data'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -140,5 +143,25 @@ class CustomerController extends Controller
 
         return response()->json(['response'=>$view]);
 
+    }
+
+    public function import() 
+    {
+        // dd( $_POST );
+
+        Excel::import(new CustomersImport,request()->file('file'));
+
+        return back()->with('success','Customers Imported Successfully');
+        
+    }
+
+    public function export() 
+    {
+        return Excel::download(new CustomersExport, 'customers.xlsx');
+    }
+
+     public function exportPhonenumber() 
+    {
+        return Excel::download(new CustomersPhoneExport, 'customers-phone.xlsx');
     }
 }

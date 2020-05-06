@@ -31,3 +31,7 @@ Route::resource('/reports', 'ReportsConroller');
 Route::resource('/receivings', 'ReceivingsConroller');
 Route::resource('/sales', 'SalesConroller');
 Route::resource('/offices', 'OfficesConroller');
+
+Route::post('import', 'CustomerController@import')->name('import');
+Route::get('export', 'CustomerController@export')->name('export');
+Route::get('phone-export', 'CustomerController@exportPhonenumber')->name('phone-export');

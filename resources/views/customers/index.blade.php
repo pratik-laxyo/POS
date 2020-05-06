@@ -5,12 +5,15 @@
 <div class="container">
    <div class="row">
       <div id="title_bar" class="btn-toolbar">
-         <button class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/customers/excel_import" title="Customer Import from Excel">
-         <span class="glyphicon glyphicon-import">&nbsp;</span>Excel Import      </button>
+         <button class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-toggle="modal" data-target="#importExcel"  data-href="" title="Customer Import from Excel">
+         <span class="glyphicon glyphicon-import">&nbsp;</span>Excel Import </button>
+
          <button class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/customers/view" title="New Customer" data-toggle="modal" data-target="#addCustomer" >
          <span class="glyphicon glyphicon-user">&nbsp;</span>New Customer  </button>
-         <a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/customers/get_datatable">Data Table</a>
-         <a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/manager/fetch_valid_customers_contact_no">Contact Numbers</a>
+
+         <a class="btn btn-info btn-sm " href="{{route('export')}}">Data Table</a>
+
+         <a class="btn btn-info btn-sm " href="{{route('phone-export')}}">Contact Numbers</a>
 
          <div class="col-xs-3 mb-2" align="center">
             <p>
@@ -29,8 +32,6 @@
        
       </div>
 
-        
-       
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
       <!-- jQuery library -->
@@ -210,7 +211,7 @@
                <div class="bs-bars pull-left">
                   <div id="toolbar">
                      <div class="pull-left btn-toolbar">
-                        <button id="delete" class="btn btn-default btn-sm" disabled="disabled">
+                        <button id="delete" class="btn btn-default btn-sm">
                         <span class="glyphicon glyphicon-trash">&nbsp;</span>Delete</button>
                         <button id="email" class="btn btn-default btn-sm" disabled="">
                         <span class="glyphicon glyphicon-envelope">&nbsp;</span>Email</button>
@@ -256,7 +257,7 @@
                   <table id="myTable" class="table table-hover table-striped">
                      <thead id="table-sticky-header">
                         <tr>
-                           <th class="bs-checkbox print_hide" style="width: 36px; " data-field="checkbox">
+                           <th class="bs-checkbox print_hide checkall" style="width: 36px; " data-field="checkbox" >
                               <div class="th-inner "><input name="btSelectAll" type="checkbox"></div>
                               <div class="fht-cell"></div>
                            </th>
@@ -295,29 +296,35 @@
                         </tr>
                      </thead>
                      <div class="container">
-                     <?php foreach ($data as $datas) { ?>
+                        <div class="row">
                      <tbody>
+                     <?php foreach ($data as $datas) { ?>
                         <tr data-index="0" data-uniqueid="13158">
-                           <td class="bs-checkbox print_hide"><input data-index="0" name="btSelectItem" type="checkbox"></td>
+                           <td class="bs-checkbox print_hide checkhour"><input data-index="0" name="btSelectItem" type="checkbox" class="checkhour"></td>
                            <td class="" style="">{{$datas->id}}</td>
                            <td class="" style="">{{$datas->last_name}}</td>
                            <td class="" style="">{{$datas->first_name}}</td>
                            <td class="" style="">{{$datas->phone_number}}</td>
                            <td class="" style="">₹&nbsp;</td>
                            <td class="" style="">{{$datas->created_at}}</td>
-                           <td class="print_hide" style=""><a href="http://newpos.dbfindia.com/Messages/view/13158" class="modal-dlg" data-btn-submit="Submit" title="Send SMS"><span class="glyphicon glyphicon-phone"></span></a></td>
+                           <td class="print_hide" style="">
+                             {{--  <button class="modal-dlg" data-btn-submit="Submit" title="Send SMS" data-toggle="modal" data-target="#sendSMS{{ $datas->id }}" >
+                                 <span class="glyphicon glyphicon-phone"></span>
+                              </button> --}}
+                              <button type="button" data-toggle="modal" data-target="#sendSMS{{ $datas->id }}" class="glyphicon glyphicon-phone btn btn-primary">
+                              </button>
+                           </td>
                            <td class="print_hide" style="">
                               {{-- <a href="http://newpos.dbfindia.com/customers/view/13158" class="modal-dlg" data-btn-submit="Submit" title="Update Customer" data-toggle="modal" data-target="#editCustomer{{ $datas->id }}"><span class="glyphicon glyphicon-edit"></span></a> --}}
-                               <button type="button" data-toggle="modal" data-target="#editCustomer{{ $datas->id }}" class="fa fa-pencil-square-o btn btn-primary">
-                                   {{-- <i  aria-hidden="true" ></i> --}}
-                                   </button>
+                              <button type="button" data-toggle="modal" data-target="#editCustomer{{ $datas->id }}" class="fa fa-pencil-square-o btn btn-primary">
+                              </button>
                            </td>
                         </tr>
-                       
+                     </div>
                      
 
- 
-      <div class="modal fade" id="editCustomer{{ $datas->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ {{-- add Customers code model.......................... --}}
+   <div class="modal fade" id="editCustomer{{ $datas->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -539,8 +546,6 @@
                   </fieldset>
                </div>
              </div>
-
-               
                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="submitUpdate">Send message</button>
@@ -551,20 +556,9 @@
               </div>
             </div>
             </div>
-            </tbody>
-            <?php }?>
-         </table>
-               </div>
-                  <div id="table-sticky-header_sticky_anchor_end"></div>
-               </div>
-               <div class="fixed-table-footer" style="display: none;">
-                  <table>
-                     <tbody>
-                        <tr></tr>
-                     </tbody>
-                  </table>
-               </div>
-            </div>
+               
+   </div>
+</div>
            {{--  <div class="fixed-table-pagination" style="display: block;">
                <div class="pull-left pagination-detail">
                   <span class="pagination-info">Showing 1 to 20 of 13126 rows</span>
@@ -600,6 +594,210 @@
       </div>
    </div>
 </div>
+
+{{-- Send Message for customer............ --}}
+
+ <div class="modal fade" id="sendSMS{{ $datas->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+         <div class="bootstrap-dialog-header">
+            <div class="bootstrap-dialog-close-button" style="display: block;">
+               <button class="close" aria-label="close">×</button>
+            </div>
+            <div class="bootstrap-dialog-title" id="0361b070-3a9d-4b4c-802b-640719790f92_title">Send SMS</div>
+         </div>
+      </div>
+      <div class="modal-body">
+         <div class="bootstrap-dialog-body">
+            <div class="bootstrap-dialog-message">
+               <div>
+                  <div id="required_fields_message">Fields in red are required</div>
+
+                     <ul id="error_message_box" class="error_message_box"></ul>
+                        
+                     <form action="" id="send_sms_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate">
+                                                   
+                        <fieldset>
+                           <div class="form-group form-group-sm">
+                              <label for="first_name_label" class="control-label col-xs-2">First name</label>        
+                              <div class="col-xs-10">
+                                 <input type="text" name="first_name" value="{{ $datas->first_name }}" class="form-control input-sm" readonly="true">
+                              </div>
+                           </div><br><br>
+                           <div class="form-group form-group-sm">
+                              <label for="last_name_label" class="control-label col-xs-2">Last name</label>       
+                              <div class="col-xs-10">
+                                 <input type="text" name="last_name" value="{{ $datas->last_name }}" class="form-control input-sm" readonly="true">
+                              </div>
+                           </div> <br><br>
+                           <div class="form-group form-group-sm">
+                              <label for="phone_label" class="control-label col-xs-2 required" aria-required="true">Phone number</label>       
+                               <div class="col-xs-10">
+                                 <div class="input-group">
+                                    <span class="input-group-addon input-sm"><span class="glyphicon glyphicon-phone-alt"></span></span>
+                                    <input type="text" name="phone" value="{{ $datas->phone_number }}" class="form-control input-sm required" aria-required="true">
+                                 </div>
+                              </div>
+                           </div><br><br>
+                           <div class="form-group form-group-sm">
+                              <label for="message_label" class="control-label col-xs-2 required" aria-required="true">Message</label>        
+                              <div class="col-xs-10">
+                                 <textarea name="message" cols="40" rows="10" class="form-control input-sm required" id="message" aria-required="true"></textarea>
+                              </div>
+                           </div>
+                        </fieldset>
+                     {{-- <script type="text/javascript">
+                     $(document).ready(function()
+                     {
+                        $('#send_sms_form').validate($.extend({
+                           submitHandler:function(form) 
+                           {
+                              $(form).ajaxSubmit({
+                                 success:function(response)
+                                 {
+                                    dialog_support.hide();
+                                    table_support.handle_submit('http://newpos.dbfindia.com/messages', response);
+                                 },
+                                 dataType:'json'
+                              });
+                           },
+                           rules:
+                           {
+                              phone:
+                              {
+                                 required:true,
+                                 number:true
+                              },
+                              message:
+                              {
+                                 required:true,
+                                 number:false
+                              }
+                              },
+                           messages:
+                           {
+                              phone:
+                              {
+                                 required:"Phone number required",
+                                 number:"Phone number"
+                              },
+                              message:
+                              {
+                                 required:"Message required"
+                              }
+                           }
+                        }, form_support.error));
+                     });
+                     </script> --}}
+                     </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer" style="display: block;">
+                  <div class="bootstrap-dialog-footer">
+                  <div class="bootstrap-dialog-footer-buttons">
+                     <button class="btn btn-primary" id="submit">Submit
+                     </button>
+                  </div>
+               </div>
+             </form>
+            </div>
+         </div>
+         
+      <?php }?>
+      </div>
+   </tbody> 
+</table>
+
+
+</div>
+</div>
+
+{{-- Import for excel.............. --}}
+<div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+   <div class="modal-content">
+      <div class="modal-header">
+         <div class="bootstrap-dialog-header">
+            <div class="bootstrap-dialog-close-button" style="display: block;">
+               <button class="close" aria-label="close">×</button>
+            </div>
+            <div class="bootstrap-dialog-title" id="fc752a45-7237-4604-ac1e-90116c45dbc5_title">Customer Import from Excel</div>
+         </div>
+      </div>
+      <div class="modal-body">
+         <div class="bootstrap-dialog-body">
+            <div class="bootstrap-dialog-message">
+               <div>
+                  <ul id="error_message_box" class="error_message_box">
+                  </ul>
+
+                     <form action="{{route('import') }}" id="excel_form" class="form-horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate">
+                      {{ csrf_field() }}
+                        <input type="hidden" name="csrf_ospos_v3" value="61f5bc2c10b61264a8b80395d5507bb0">
+                        <fieldset id="item_basic_info">
+                           <div class="form-group form-group-sm">
+                              <div class="col-xs-12">
+                                 <a href="http://newpos.dbfindia.com/customers/excel">Download Import Excel Template (CSV)</a>
+                              </div>
+                           </div>
+
+                           <div class="form-group form-group-sm">
+                               <input type="file" name="file" class="form-control">
+                <br>
+                                 </span>
+                                    {{-- <a href="#" class="input-group-addon input-sm btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a> --}}
+                                 </div>
+                              </div>
+                           </div>
+                        </fieldset>
+                     {{-- </form> --}}
+                     {{-- <script type="text/javascript">
+                     //validation and submit handling
+                     $(document).ready(function()
+                     {  
+                        $('#excel_form').validate($.extend({
+                           submitHandler:function(form) {
+                              $(form).ajaxSubmit({
+                                 success:function(response)
+                                 {
+                                    dialog_support.hide();
+                                    $.notify(response.message, { type: response.success ? 'success' : 'danger'} );
+                                 },
+                                 dataType: 'json'
+                              });
+                           },
+                           errorLabelContainer: "#error_message_box",
+                           wrapper: "li",
+                           rules: 
+                           {
+                              file_path: "required"
+                              },
+                           messages: 
+                           {
+                                 file_path: "Full path to excel file required"
+                           }
+                        }, form_support.error));
+                     });
+                     </script> --}}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer" style="display: block;"><div class="bootstrap-dialog-footer">
+               <div class="bootstrap-dialog-footer-buttons"><button type="submit" class="btn btn-primary" id="submit">Submit</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</form>
+      </div>
+   </div>
+</div>
+
 {{--  <script type="text/javascript">
    //validation and submit handling
    $(document).ready(function()
@@ -851,5 +1049,22 @@ nominatim.init({
 
       })
    })
-  
+// Code for checked or unchecked all data.................
+
+   $(document).ready(function(){
+      $('#delete').prop("disabled", true);
+        var clicked = false;
+      $(".checkall").on("click", function() {
+         alert();
+           $(".checkhour").prop("checked", !clicked);
+           clicked = !clicked;
+      if ($(this).is(':checked')) {
+         $('#delete').prop("disabled", false);
+        } else {
+      if ($('.checkhour').filter(':checked').length < 1){
+         $('#delete').attr('disabled',true);}
+      }
+           // this.innerHTML = clicked ? 'Deselect' : 'Select';
+});
+});
 </script>
