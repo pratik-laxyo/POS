@@ -211,7 +211,7 @@
                <div class="bs-bars pull-left">
                   <div id="toolbar">
                      <div class="pull-left btn-toolbar">
-                        <button id="delete" class="btn btn-default btn-sm">
+                        <button id="delete" class="btn btn-default btn-sm deleteAllCustomer">
                         <span class="glyphicon glyphicon-trash">&nbsp;</span>Delete</button>
                         <button id="email" class="btn btn-default btn-sm" disabled="">
                         <span class="glyphicon glyphicon-envelope">&nbsp;</span>Email</button>
@@ -918,12 +918,30 @@ nominatim.init({
    country_codes: 'IN'
 });
 });
-</script> --}}<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+</script> --}}
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
 <script type="text/javascript">
    
    $(document).ready( function () {
-    $('#myTable').DataTable();
+    // $('#myTable').DataTable();
+    $('#myTable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+        ]
+    } );
 } );
 </script>
 
@@ -1051,20 +1069,32 @@ nominatim.init({
    })
 // Code for checked or unchecked all data.................
 
-   $(document).ready(function(){
-      $('#delete').prop("disabled", true);
-        var clicked = false;
+$(document).ready(function(){
+   $('#delete').prop("disabled", true);
+     var clicked = false;
       $(".checkall").on("click", function() {
-         alert();
-           $(".checkhour").prop("checked", !clicked);
-           clicked = !clicked;
-      if ($(this).is(':checked')) {
-         $('#delete').prop("disabled", false);
-        } else {
-      if ($('.checkhour').filter(':checked').length < 1){
-         $('#delete').attr('disabled',true);}
-      }
-           // this.innerHTML = clicked ? 'Deselect' : 'Select';
-});
+
+         
+        $(".checkhour").prop("checked", !clicked);
+          clicked = !clicked;
+
+         if (clicked) {
+            $('#delete').prop("disabled", false);
+             
+           } else{
+            $('#delete').prop("disabled", true);
+
+           }
+        
+   });
+      $(".deleteAllCustomer").click(function(){
+             var val = [];
+              $(':checkbox:checked').each(function(i){
+                  val[i] = $(this).val();
+                  alert(val[i]);
+               });
+                 // alert();
+         
+      });
 });
 </script>

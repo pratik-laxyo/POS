@@ -25,7 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/customers', 'CustomerController');
 Route::get('/allcustomer', 'CustomerController@getCustomer')->name('allcustomer');
 Route::resource('/items', 'ItemController');
-Route::resource('/manager', 'ManagerConroller');
+Route::resource('/manager', 'Manager\ManagerController');
 Route::resource('/item-kits', 'ItemKitsConroller');
 Route::resource('/reports', 'ReportsConroller');
 Route::resource('/receivings', 'ReceivingsConroller');
@@ -35,3 +35,12 @@ Route::resource('/offices', 'OfficesConroller');
 Route::post('import', 'CustomerController@import')->name('import');
 Route::get('export', 'CustomerController@export')->name('export');
 Route::get('phone-export', 'CustomerController@exportPhonenumber')->name('phone-export');
+
+Route::resource('/mci', 'Manager\ManagerMCIController');
+
+Route::resource('/mci-category', 'Manager\MCICategoryController');
+
+Route::resource('/mci-subcategory', 'Manager\MCISubCategoryController');
+Route::resource('/mci-size', 'Manager\MCISizeController');
+Route::resource('/mci-color', 'Manager\MCIColorController');
+Route::resource('/mci-brand', 'Manager\MCIBrandController');

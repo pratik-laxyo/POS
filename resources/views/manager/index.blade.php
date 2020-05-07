@@ -206,7 +206,7 @@
 			<div class="card" style="background-image: linear-gradient(to bottom,#efb1ab, #f77b7b);background-color: #f77b7b;min-height:200px;">
 				<br>
 				<h3>MCI</h3>
-				<h1><a href="http://newpos.dbfindia.com/manager/load_tab_view/mci" title="MCI"><span class="fa fa-qrcode" style="color: white;"></span></a></h1>
+				<h1><a href="{{route('mci.index')}}" title="MCI"><span class="fa fa-qrcode" style="color: white;"></span></a></h1>
 				<br>
 			</div>
 			</center>

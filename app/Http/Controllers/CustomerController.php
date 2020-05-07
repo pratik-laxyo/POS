@@ -17,7 +17,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-         $data =  Customer::get();
+        $data =  Customer::get();
         return view("customers.index",compact('data'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
