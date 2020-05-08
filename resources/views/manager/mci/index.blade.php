@@ -77,7 +77,7 @@
 		<?php foreach ($mciCategory as $value) { ?>
             <tr>
                 <td>{{$value->id}}</td>
-                <td>{{$value->category_name}}</td>
+                <td align="center">{{$value->category_name}}</td>
                 <td><form method="post" action="{{ route('mci-category.destroy',$value->id) }}">
                     @csrf
                     @method('DELETE')
@@ -210,7 +210,7 @@
 		<?php foreach ($mciSubCategory as $value) { ?>
             <tr>
                 <td>{{$value->id}}</td>
-                <td>{{$value->sub_categories_name}}</td>
+                <td align="center">{{$value->sub_categories_name}}</td>
                 <td >
                 	<form method="post" action="{{ route('mci-subcategory.destroy',$value->id) }}">
                     @csrf
@@ -338,7 +338,7 @@
 		<?php foreach ($mciBrand as $value) { ?>
             <tr>
                 <td>{{$value->id}}</td>
-                <td>{{$value->brand_name}}</td>
+                <td align="center">{{$value->brand_name}}</td>
                 <td >
                 <form method="post" action="{{ route('mci-brand.destroy',$value->id) }}">
                     @csrf
@@ -451,7 +451,7 @@
 		<?php foreach ($mciSize as $value) { ?>
             <tr>
                 <td>{{$value->id}}</td>
-                <td>{{$value->sizes_name}}</td>
+                <td align="center">{{$value->sizes_name}}</td>
                 <td >
                 	<form method="post" action="{{ route('mci-size.destroy',$value->id) }}">
                     @csrf
@@ -563,7 +563,7 @@
 		<?php foreach ($mciColor as $value) { ?>
             <tr>
                 <td>{{$value->id}}</td>
-                <td>{{$value->color_name}}</td>
+                <td align="center">{{$value->color_name}}</td>
                 <td >
                 	<form method="post" action="{{ route('mci-color.destroy',$value->id) }}">
                     @csrf
