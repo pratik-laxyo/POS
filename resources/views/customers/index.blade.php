@@ -323,7 +323,7 @@
                      </div>
                      
 
- {{-- add Customers code model.......................... --}}
+ {{-- add Customers code model for Edit............... --}}
    <div class="modal fade" id="editCustomer{{ $datas->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

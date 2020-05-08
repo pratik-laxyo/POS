@@ -16,15 +16,16 @@
 // Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', function () {
-    return Auth::check() ? view('/home') :  view('auth.login');
-});
+// Route::get('/', function () {
+//     return Auth::check() ? view('/home') :  view('auth.login');
+// });
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/customers', 'CustomerController');
 Route::get('/allcustomer', 'CustomerController@getCustomer')->name('allcustomer');
 Route::resource('/items', 'ItemController');
+
 Route::resource('/manager', 'Manager\ManagerController');
 Route::resource('/item-kits', 'ItemKitsConroller');
 Route::resource('/reports', 'ReportsConroller');
@@ -44,3 +45,10 @@ Route::resource('/mci-subcategory', 'Manager\MCISubCategoryController');
 Route::resource('/mci-size', 'Manager\MCISizeController');
 Route::resource('/mci-color', 'Manager\MCIColorController');
 Route::resource('/mci-brand', 'Manager\MCIBrandController');
+
+Route::resource('/office', 'Office\OfficeController');
+Route::resource('shop', 'Office\Shop\ShopController');
+Route::get('test', 'Office\Shop\ShopController@testUser')->name('test');
+
+Route::resource('employees', 'Office\Employees\EmployeesController');
+

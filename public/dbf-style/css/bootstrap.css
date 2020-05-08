@@ -4,6 +4,19 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+div > .registeredMsg {
+    color: #c12828;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+div > .successMsg {
+    font-size: 18px;
+    color: #0e880e;
+    font-weight: bold;
+    background: beige;
+}
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -4277,7 +4290,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   height: 50px;
-  padding: 15px 15px;
+  padding: 5px 15px;
   font-size: 18px;
   line-height: 20px;
 }

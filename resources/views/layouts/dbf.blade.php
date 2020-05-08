@@ -9,19 +9,24 @@
 
     <title>{{ config('app.name', 'DBF | POS') }}</title>
 
-    <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+    <!-- CSS Library -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="asset('dbf-style/images/favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dbf-style/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dbf-style/dist/opensourcepos.min.css') }}">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+
+<!-- JS Library -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+
 </head>
 <body>
     <div id="app">
@@ -60,7 +65,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand hidden-sm" href="{{ route('home') }}" style="height: 80px; ">
+                    <a class="navbar-brand hidden-sm" href="{{ route('home') }}">
                         <img height="45" width="75" src="{{ asset('dbf-style/images/dbflogo.png') }}">
                     </a>
                  </div>
@@ -109,6 +114,7 @@
                        </li>
                        <li class="">
                           <a href="{{ route('offices.index') }}" title="Office" class="menu-icon">
+
                           <img id="menuicon_office" src="{{ asset('dbf-style/images/menubar/office.png') }}" border="0" alt="Module Icon"><br>
                           Office</a>
                        </li>
