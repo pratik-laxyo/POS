@@ -19,3 +19,6 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/customers', 'CustomerController');
 Route::resource('/items', 'ItemController');
+Route::resource('/office', 'Office\OfficeController');
+Route::resource('shop', 'Office\Shop\ShopController');
+Route::get('test', 'Office\Shop\ShopController@testUser')->name('test');

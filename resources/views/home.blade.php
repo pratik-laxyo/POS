@@ -1,70 +1,58 @@
 @extends('layouts.dbf')
 
 @section('content')
-<!-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 
 <div class="container">
    <div class="row">
-        <div class="col-md-12">
-              <ul class="nav nav-tabs" data-tabs="tabs" id="shop_tab">
-                 <li class="active" role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(4,7)" title="Laxyo Energy Ltd.">LaxyoHouse</a>
-                 </li>
-                 <li role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(6,4)" title="DBF Indraprastha">Indraprastha</a>
-                 </li>
-                 <li role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(8,10)" title="Annapurna Store">Annapurna</a>
-                 </li>
-                 <li role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(11,13)" title="DBF Mahalaxmi Nagar">Mahalaxmi</a>
-                 </li>
-                 <li role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(13,1439)" title="">Ratlam</a>
-                 </li>
-                 <li role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(16,1090)" title="">Bapat</a>
-                 </li>
-                 <li role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(20,7562)" title="DBF Shop 114">Shop114</a>
-                 </li>
-                 <li role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(22,10544)" title="DBF Airport Road">AirportRoad</a>
-                 </li>
-                 <li role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(27,12393)" title="">NewArrival</a>
-                 </li>
-                 <li role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(28,12393)" title="">Unchecked</a>
-                 </li>
-                 <li role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(29,12393)" title="">Damaged</a>
-                 </li>
-                 <li role="presentation">
-                    <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(30,12393)" title="">Scrap</a>
-                 </li>
-              </ul>
+      <div class="col-md-12">
+          <ul class="nav nav-tabs" data-tabs="tabs" id="shop_tab">
+            @if(!empty($tabs))
+              @foreach($tabs as $tab)
+                <li class="tab @if($tab->shop_name == 'LaxyoHouse') active @endif" id="Tab-{{ $tab->id }}" onclick="count_data({{ $tab->id }})" role="presentation">
+                    <a data-toggle="tab" href="javascript:void(0)" title="Laxyo Energy Ltd.">{{ $tab->shop_name }}</a>
+                </li>
+              @endforeach
+            @endif
+             <!-- <li class="active" role="presentation">
+                  <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(4,7)" title="Laxyo Energy Ltd.">LaxyoHouse</a>
+             </li>
+             <li role="presentation">
+                <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(6,4)" title="DBF Indraprastha">Indraprastha</a>
+             </li>
+             <li role="presentation">
+                <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(8,10)" title="Annapurna Store">Annapurna</a>
+             </li>
+             <li role="presentation">
+                <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(11,13)" title="DBF Mahalaxmi Nagar">Mahalaxmi</a>
+             </li>
+             <li role="presentation">
+                <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(13,1439)" title="">Ratlam</a>
+             </li>
+             <li role="presentation">
+                <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(16,1090)" title="">Bapat</a>
+             </li>
+             <li role="presentation">
+                <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(20,7562)" title="DBF Shop 114">Shop114</a>
+             </li>
+             <li role="presentation">
+                <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(22,10544)" title="DBF Airport Road">AirportRoad</a>
+             </li>
+             <li role="presentation">
+                <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(27,12393)" title="">NewArrival</a>
+             </li>
+             <li role="presentation">
+                <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(28,12393)" title="">Unchecked</a>
+             </li>
+             <li role="presentation">
+                <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(29,12393)" title="">Damaged</a>
+             </li>
+             <li role="presentation">
+                <a data-toggle="tab" href="javascript:void(0)" onclick="count_data(30,12393)" title="">Scrap</a>
+             </li> -->
+          </ul>
           <br>
-        </div>
+      </div>
 
       <div class="col-md-12">
             <div class="row">
@@ -75,7 +63,7 @@
                            <br>
                            <h3>Current Stock</h3>
                            <h1><span class="fa fa-tags" style="color: white;"></span></h1>
-                           <h1 id="itemcount" class="loader_wait">102655</h1>
+                           <h1 id="itemcount" class="loader_wait">{{ $tabs[0]->id }}</h1>
                            <br>
                         </div>
                      </center>
@@ -88,7 +76,7 @@
                            <br>
                            <h3>Today's Sales</h3>
                            <h1><span class="fa fa-shopping-cart" style="color: white;"></span></h1>
-                           <h1 id="dailySales" class="loader_wait">0</h1>
+                           <h1 id="dailySales" class="loader_wait">{{ $tabs[0]->id }}</h1>
                            <br>
                         </div>
                      </center>
@@ -101,7 +89,7 @@
                            <br>
                            <h3>Today's Earning</h3>
                            <h1><span class="fa fa-inr" style="color: white;"></span></h1>
-                           <h1 id="totalSales" class="loader_wait">0</h1>
+                           <h1 id="totalSales" class="loader_wait">{{ $tabs[0]->id }}</h1>
                            <br>
                         </div>
                      </center>
@@ -187,5 +175,17 @@
       </div>
    </div>
 </div>
+
+
+<script type="text/javascript">
+  function count_data(tab_id) {
+    $('.loader_wait').html('<img src="http://newpos.dbfindia.com/images/loader_icon1.gif" alt="loading" />');
+    $('#itemcount').html(tab_id);
+    $('#dailySales').html(tab_id);
+    $('#totalSales').html(tab_id);
+    $(".tab").removeClass("active");
+    $(this).addClass("active");
+  }
+</script>
 
 @endsection
