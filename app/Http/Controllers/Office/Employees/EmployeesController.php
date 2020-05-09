@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Office\Employees;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Office\Employees\Employees;
+use DB;
+use App\Models\Office\Employees\EmployeesLogin;
+use Illuminate\Support\Facades\Hash;
 class EmployeesController extends Controller
 {
     public function __construct()
@@ -18,8 +21,10 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = Employees::all();
-        return view("office.employees.index",compact('employees'));
+        $employees = Employees::with('usersInfo')->get();
+       // dd($employees);
+        
+            return view("office.employees.index",compact('employees'));
     }
 
     /**
@@ -40,7 +45,7 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+       // dd($request);
         $data = $request->validate([
                 'first_name'=>'required',
                 'last_name'=>'required',
@@ -57,7 +62,17 @@ class EmployeesController extends Controller
         $data['country'] = $request->country;
         $data['comments'] = $request->comments;
 
-       $post = Employees::create($data);
+       /* get employee last id...............*/
+       $emLastId = Employees::create($data)->id;
+
+       $userLogin['emp_id'] = $emLastId;
+       $userLogin['username'] = $request->username;
+       $userLogin['password'] = Hash::make($request->password);
+       $userLogin['language'] = $request->language;
+
+       $emLogin = EmployeesLogin::create($userLogin)->id;
+    // dd($userLogin['password']);
+
         return back()->with('success','added Successfully');
     }
 
@@ -122,5 +137,10 @@ class EmployeesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function sendMessage()
+    {
+        print_r($_POST);
     }
 }

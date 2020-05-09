@@ -51,4 +51,5 @@ Route::resource('shop', 'Office\Shop\ShopController');
 Route::get('test', 'Office\Shop\ShopController@testUser')->name('test');
 
 Route::resource('employees', 'Office\Employees\EmployeesController');
+Route::post('send-message', 'Office\Employees\EmployeesController@sendMessage')->name('send-message');
 

@@ -201,18 +201,18 @@
 
 <div id="table-sticky-header_sticky_anchor_end"></div></div>
 <div class="modal fade" id="addCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-	<div class="modal-content">
-	<div class="modal-dialog">
-		<div class="modal-content">
-		 <div class="modal-header">
-			<div class="bootstrap-dialog-header">
-				<div class="bootstrap-dialog-close-button" style="display: block;">
-					<button class="close" aria-label="close">×</button>
-				</div>
-				<div class="bootstrap-dialog-title" id="ef3bc51d-2db7-436b-b082-3915b94d078a_title">New Employee</div>
-			</div>
-		</div>
+  <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">New Employee</h5>
+               <div class="col-xs-3 mb-2" align="center">
+                    
+                  <div class="errorMessage"> </div>
+               </div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
 	<div class="modal-body">
 		<div class="bootstrap-dialog-body">
 			<div class="bootstrap-dialog-message">
@@ -322,78 +322,92 @@
 						</div>
 					</div>
 			</fieldset>
-			<div class="modal-footer" style="display: block;">
+			{{-- <div class="modal-footer" style="display: block;">
 				<div class="bootstrap-dialog-footer">
 					<div class="bootstrap-dialog-footer-buttons">
 						<button class="btn btn-primary" id="submit" type="submit">Submit</button>
 					</div>
 				</div>
 			</div>
-		</form>
+		</form> --}}
 </div>
-		<div class="tab-pane" id="employee_login_info">
-			<fieldset>
-				<div class="form-group form-group-sm">	
-					<label for="username" class="required control-label col-xs-3" aria-required="true">Username</label>					
-					<div class="col-xs-8">
-						<div class="input-group">
-							<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-user"></span></span>
-							<input type="text" name="username" value="" id="username" class="form-control input-sm">
-						</div>
-					</div>
-				</div>
-				<div class="form-group form-group-sm">	
-					<label for="password" class="control-label col-xs-3">Password</label>					<div class="col-xs-8">
-						<div class="input-group">
-							<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
-							<input type="password" name="password" value="" id="password" class="form-control input-sm">
-						</div>
-					</div>
-				</div>
+{{-- End add Employees code ............... --}}
 
-				<div class="form-group form-group-sm">	
-				<label for="repeat_password" class="control-label col-xs-3">Password Again</label>					<div class="col-xs-8">
-						<div class="input-group">
-							<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
-							<input type="password" name="repeat_password" value="" id="repeat_password" class="form-control input-sm">
-						</div>
-					</div>
-				</div>
 
-				<div class="form-group form-group-sm">
-					<label for="language" class="control-label col-xs-3">Language</label>					<div class="col-xs-8">
-						<div class="input-group">
-							<select name="language" class="form-control input-sm">
-								<option value="ar-EG:arabic">Arabic (Egypt)</option>
-								<option value="az-AZ:azerbaijani">Azerbaijani (Azerbaijan)</option>
-								<option value="bg:bulgarian">Bulgarian</option>
-								<option value="de:german">German (Germany)</option>
-								<option value="de-CH:german">German (Swiss)</option>
-								<option value="en-GB:english">English (Great Britain)</option>
-								<option value="en-US:english">English (United States)</option>
-								<option value="es:spanish">Spanish</option>
-								<option value="fr:french">French</option>
-								<option value="hr-HR:croatian">Croatian (Croatia)</option>
-								<option value="hu-HU:hungarian">Hungarian (Hungary)</option>
-								<option value="id:indonesian">Indonesian</option>
-								<option value="it:italian">Italian</option>
-								<option value="km:khmer">Central Khmer (Cambodia)</option>
-								<option value="lo:lao">Lao (Laos)</option>
-								<option value="nl-BE:dutch">Dutch (Belgium)</option>
-								<option value="pt-BR:portuguese-brazilian">Portuguese (Brazil)</option>
-								<option value="ru:russian">Russian</option>
-								<option value="sv:swedish">Swedish</option>
-								<option value="th:thai">Thai</option>
-								<option value="tr:turkish">Turkish</option>
-								<option value="vi:vietnamese">Vietnamese</option>
-								<option value="zh:simplified-chinese">Chinese</option>
-								<option value=":" selected="selected">System Language</option>
-							</select>
-						</div>
-					</div>
+{{-- start Login Employees code ............... --}}
+
+<div class="tab-pane" id="employee_login_info">
+	<fieldset>
+		{{-- <form action="{{route('employees.store')}}" id="employee_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate"> --}}
+        @csrf  
+		<div class="form-group form-group-sm">	
+			<label for="username" class="required control-label col-xs-3" aria-required="true">Username</label>					
+			<div class="col-xs-8">
+				<div class="input-group">
+					<span class="input-group-addon input-sm">
+						<span class="glyphicon glyphicon-user"></span></span>
+					<input type="text" name="username" value="" id="username" class="form-control input-sm">
 				</div>
-			</fieldset>
+			</div>
 		</div>
+		<div class="form-group form-group-sm">	
+			<label for="password" class="control-label col-xs-3">Password</label>					<div class="col-xs-8">
+				<div class="input-group">
+					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
+					<input type="password" name="password" value="" id="password" class="form-control input-sm">
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-sm">	
+			<label for="repeat_password" class="control-label col-xs-3">Password Again</label>	
+			<div class="col-xs-8">
+				<div class="input-group">
+					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
+					<input type="password" name="repeat_password" value="" id="repeat_password" class="form-control input-sm">
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-sm">
+			<label for="language" class="control-label col-xs-3">Language</label>					
+			<div class="col-xs-8">
+				<div class="input-group">
+					<select name="language" class="form-control input-sm">
+						<option value="ar-EG:arabic">Arabic (Egypt)</option>
+						<option value="az-AZ:azerbaijani">Azerbaijani (Azerbaijan)</option>
+						<option value="bg:bulgarian">Bulgarian</option>
+						<option value="de:german">German (Germany)</option>
+						<option value="de-CH:german">German (Swiss)</option>
+						<option value="en-GB:english">English (Great Britain)</option>
+						<option value="en-US:english">English (United States)</option>
+						<option value="es:spanish">Spanish</option>
+						<option value="fr:french">French</option>
+						<option value="hr-HR:croatian">Croatian (Croatia)</option>
+						<option value="hu-HU:hungarian">Hungarian (Hungary)</option>
+						<option value="id:indonesian">Indonesian</option>
+						<option value="it:italian">Italian</option>
+						<option value="km:khmer">Central Khmer (Cambodia)</option>
+						<option value="lo:lao">Lao (Laos)</option>
+						<option value="nl-BE:dutch">Dutch (Belgium)</option>
+						<option value="pt-BR:portuguese-brazilian">Portuguese (Brazil)</option>
+						<option value="ru:russian">Russian</option>
+						<option value="sv:swedish">Swedish</option>
+						<option value="th:thai">Thai</option>
+						<option value="tr:turkish">Turkish</option>
+						<option value="vi:vietnamese">Vietnamese</option>
+						<option value="zh:simplified-chinese">Chinese</option>
+						<option value=":" selected="selected">System Language</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	
+</div>
+{{-- end Login Employees code ............... --}}
+
+{{-- start permission for Employees code......... --}}
 
 	<div class="tab-pane" id="employee_permission_info">
 		<fieldset>
@@ -1031,8 +1045,18 @@
 			</li>
 		</ul>
 		</fieldset>
+
+		</div>
+		<div class="modal-footer" >
+		<div class="bootstrap-dialog-footer">
+			<div class="bootstrap-dialog-footer-buttons">
+				<button class="btn btn-primary" id="submit" type="submit">Submit</button>
+			</div>
 		</div>
 	</div>
+</form>
+	</div>
+{{-- end permission for Employees code......... --}}
 	
 
 			</div>
@@ -1040,18 +1064,7 @@
 	</div>
 </div>
 
-		<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0" style="display: none;">
-			
-		</ul>
-		<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-2" tabindex="0" style="display: none;">
-			
-		</ul>
-		<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-3" tabindex="0" style="display: none;">
-			
-		</ul>
-		<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-4" tabindex="0" style="display: none;">
-			
-		</ul>
+
 	</div>
 </div>
 
@@ -1059,7 +1072,7 @@
 
 </div>
 </div>
-
+{{-- Show all Employees.......................... --}}
 <div class="container">
 	<div class="fixed-table-body">
 		<div class="fixed-table-loading" style="top: 44px; display: none;">Loading, please wait...</div
@@ -1120,16 +1133,17 @@
 					<td class="" style="">{{$value->last_name}}</td> <td class="" style="">{{$value->email}}</td>
 					<td class="" style="">{{$value->phone_number}}</td> 
 					<td class="print_hide" style="">
-						<a href="http://newpos.dbfindia.com/Messages/view/11306" class="modal-dlg" data-btn-submit="Submit" title="Send SMS"><span class="glyphicon glyphicon-phone"></span></a>
+						<a class="modal-dlg" data-btn-submit="Submit" title="Send SMS" data-toggle="modal" data-target="#sendSms{{ $value->id }}"><span class="glyphicon glyphicon-phone"></span></a>
 					</td> 
 					<td class="print_hide" style="">
-						<a class="modal-dlg" data-btn-submit="Submit" title="Update Employee" data-toggle="modal" data-target="#ediSubCategoryd{{ $value->id }}"><span class="glyphicon glyphicon-edit">
+						<a class="modal-dlg" data-btn-submit="Submit" title="Update Employee" data-toggle="modal" data-target="#editEmployee{{ $value->id }}"><span class="glyphicon glyphicon-edit">
 					</span>
 				</a>
 			</td> 
 		</tr>
+
 {{-- Edit Customers code model....................... --}}
-   <div class="modal fade" id="ediSubCategoryd{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal fade" id="editEmployee{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -1150,13 +1164,14 @@
 
                <form action="{{route('employees.update',$value->id)}}" id="customer_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate">
                 @csrf
-                @method('PUT')                                                                          ">
+                @method('PUT') 
+
                <ul class="nav nav-tabs nav-justified" data-tabs="tabs">
                   <li class="active" role="presentation">
                      <a data-toggle="tab" href="#customer_basic_info">Information</a>
                   </li>
                   <li role="presentation" class="">
-					<a data-toggle="tab" href="#employee_login_info" aria-expanded="false">Login</a>
+					<a data-toggle="tab" href="#editemployee_login_info" aria-expanded="false">Login</a>
 					</li>
 					<li role="presentation" class="">
 						<a data-toggle="tab" href="#employee_permission_info" aria-expanded="false">Permissions</a>
@@ -1166,21 +1181,20 @@
                <div class="tab-content">
                   <div class="tab-pane fade in active" id="customer_basic_info">
                      <fieldset>
-                        <div class="form-group form-group-sm"> 
-               <label for="first_name" class="required control-label col-sm-3" aria-required="true">First Name</label>  <div class="col-xs-8">
-                  <input type="text" name="first_name" value="{{ $value->first_name}}" id="first_name" class="form-control input-sm">
-               </div>
-            </div>
+                     <div class="form-group form-group-sm"> 
+               			<label for="first_name" class="required control-label col-sm-3" aria-required="true">First Name</label>  
+		                <div class="col-xs-8">
+		                  <input type="text" name="first_name" value="{{ $value->first_name}}" id="first_name" class="form-control input-sm">
+		                </div>
+            		</div><br><br>
+	            <div class="form-group form-group-sm"> 
+	               <label for="last_name" class="required control-label col-xs-3" aria-required="true">Last Name</label> <div class="col-xs-8">
+	                  <input type="text" name="last_name" value="{{ $value->last_name}}" id="last_name" class="form-control input-sm">
+	               </div>
+	            </div><br><br>
 
             <div class="form-group form-group-sm"> 
-               <label for="last_name" class="required control-label col-xs-3" aria-required="true">Last Name</label> <div class="col-xs-8">
-                  <input type="text" name="last_name" value="{{ $value->last_name}}" id="last_name" class="form-control input-sm">
-               </div>
-            </div>
-
-           <div class="form-group form-group-sm"> 
                <label for="gender" class="control-label col-xs-3" >Gender</label> <div class="col-xs-8">
-                  
                   <div class="col-xs-4">
                      <label class="radio-inline">Male</label>
                      <input type ="radio" name="gender" value="male" id="gender" class="form-control input-sm" <?php if ($value->gender == "male") echo "checked"; ?>>
@@ -1190,7 +1204,7 @@
                      <input type ="radio" name="gender" value="female" id="gender" class="form-control input-sm" <?php if ($value->gender == "female") echo "checked"; ?>>
                   </div>
                </div>
-            </div>
+            </div><br><br>
             <div class="form-group form-group-sm"> 
                <label for="email" class="control-label col-xs-3">Email</label>   <div class="col-xs-8">
                   <div class="input-group">
@@ -1198,7 +1212,7 @@
                      <input type="text" name="email" value="{{ $value->email}}" id="email" class="form-control input-sm">
                   </div>
                </div>
-            </div>
+            </div><br><br>
             <div class="form-group form-group-sm"> 
                <label for="phone_number" class="required control-label col-xs-3" aria-required="true">Phone Number</label> <div class="col-xs-8">
                   <div class="input-group">
@@ -1206,49 +1220,49 @@
                      <input type="text" name="phone_number" value="{{ $value->phone_number}}" id="phone_number" class="form-control input-sm">
                   </div>
                </div>
-            </div>
+            </div><br><br>
 
             <div class="form-group form-group-sm"> 
                <label for="address_1" class="control-label col-xs-3">Address 1</label> 
                <div class="col-xs-8">
                   <input type="text" name="address_1" value="{{ $value->address_1}}" id="address_1" class="form-control input-sm">
                </div>
-            </div>
+            </div><br><br>
 
             <div class="form-group form-group-sm"> 
                <label for="address_2" class="control-label col-xs-3">Address 2</label> 
                <div class="col-xs-8">
                   <input type="text" name="address_2" value="{{ $value->address_2}}" id="address_2" class="form-control input-sm">
                </div>
-            </div>
+            </div><br><br>
 
             <div class="form-group form-group-sm"> 
                <label for="city" class="control-label col-xs-3">City</label>  
                <div class="col-xs-8">
                   <input type="text" name="city" value="{{ $value->city}}" id="city" class="form-control input-sm ui-autocomplete-input" autocomplete="off">
                </div>
-            </div>
+            </div><br><br>
 
             <div class="form-group form-group-sm"> 
                <label for="state" class="control-label col-xs-3">State</label>   
                <div class="col-xs-8">
                   <input type="text" name="state" value="{{ $value->state}}" id="state" class="form-control input-sm ui-autocomplete-input" autocomplete="off">
                </div>
-            </div>
+            </div><br><br>
 
             <div class="form-group form-group-sm"> 
                <label for="zip" class="control-label col-xs-3">Postal Code</label>  
                <div class="col-xs-8">
                   <input type="text" name="zip" value="{{ $value->postcode}}" id="postcode" class="form-control input-sm ui-autocomplete-input" autocomplete="off">
                </div>
-            </div>
+            </div><br><br>
 
             <div class="form-group form-group-sm"> 
                <label for="country" class="control-label col-xs-3">Country</label>  
                <div class="col-xs-8">
                   <input type="text" name="country" value="{{ $value->country}}" id="country" class="form-control input-sm ui-autocomplete-input" autocomplete="off">
                </div>
-            </div>
+            </div><br><br>
 
             <div class="form-group form-group-sm"> 
                <label for="comments" class="control-label col-xs-3">Comments</label>   
@@ -1258,8 +1272,82 @@
             </div>
                         
                </fieldset>
-                  </div>
-                  
+                </div>
+     	{{-- start Login Employees code ............... --}}
+
+<div class="tab-pane" id="editemployee_login_info">
+	<fieldset><br><br>
+		{{-- <form action="{{route('employees.store')}}" id="employee_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate"> --}}
+        @csrf  
+        
+		<div class="form-group form-group-sm">	
+			<label for="username" class="required control-label col-xs-3" aria-required="true">Username</label>	<br><br>				
+			<div class="col-xs-8">
+				<div class="input-group">
+					<span class="input-group-addon input-sm">
+						<span class="glyphicon glyphicon-user"></span></span>
+					<input type="text" name="username" value="{{$value->usersInfo}}" id="username" class="form-control input-sm">
+				</div>
+			</div>
+		</div><br><br>
+		<div class="form-group form-group-sm">	
+			<label for="password" class="control-label col-xs-3">Password</label><br><br>
+			<div class="col-xs-8">
+				<div class="input-group">
+					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
+					<input type="password" name="password" value="" id="password" class="form-control input-sm">
+				</div>
+			</div>
+		</div><br><br>
+
+		<div class="form-group form-group-sm">	
+			<label for="repeat_password" class="control-label col-xs-3">Password Again</label><br><br>	
+			<div class="col-xs-8">
+				<div class="input-group">
+					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
+					<input type="password" name="repeat_password" value="" id="repeat_password" class="form-control input-sm">
+				</div>
+			</div>
+		</div><br><br>
+
+		<div class="form-group form-group-sm">
+			<label for="language" class="control-label col-xs-3">Language</label><br><br>					
+			<div class="col-xs-8">
+				<div class="input-group">
+					<select name="language" class="form-control input-sm">
+						<option value="ar-EG:arabic">Arabic (Egypt)</option>
+						<option value="az-AZ:azerbaijani">Azerbaijani (Azerbaijan)</option>
+						<option value="bg:bulgarian">Bulgarian</option>
+						<option value="de:german">German (Germany)</option>
+						<option value="de-CH:german">German (Swiss)</option>
+						<option value="en-GB:english">English (Great Britain)</option>
+						<option value="en-US:english">English (United States)</option>
+						<option value="es:spanish">Spanish</option>
+						<option value="fr:french">French</option>
+						<option value="hr-HR:croatian">Croatian (Croatia)</option>
+						<option value="hu-HU:hungarian">Hungarian (Hungary)</option>
+						<option value="id:indonesian">Indonesian</option>
+						<option value="it:italian">Italian</option>
+						<option value="km:khmer">Central Khmer (Cambodia)</option>
+						<option value="lo:lao">Lao (Laos)</option>
+						<option value="nl-BE:dutch">Dutch (Belgium)</option>
+						<option value="pt-BR:portuguese-brazilian">Portuguese (Brazil)</option>
+						<option value="ru:russian">Russian</option>
+						<option value="sv:swedish">Swedish</option>
+						<option value="th:thai">Thai</option>
+						<option value="tr:turkish">Turkish</option>
+						<option value="vi:vietnamese">Vietnamese</option>
+						<option value="zh:simplified-chinese">Chinese</option>
+						<option value=":" selected="selected">System Language</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	
+</div>
+{{-- end Login Employees code ............... --}}
+
                </div>
              </div>
                <div class="modal-footer">
@@ -1278,10 +1366,128 @@
       </div>
    </div>
 </div>
+{{-- End edit customer............................ --}}
+
+{{-- send sms for employee......................... --}}
+<div class="modal fade" id="sendSms{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Send SMS</h5>
+           <div class="col-xs-3 mb-2" align="center">
+                
+              <div class="errorMessage"> </div>
+           </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+<div class="modal-body">
+	<div class="bootstrap-dialog-body">
+		<div class="bootstrap-dialog-message">
+			<div>
+				<div id="required_fields_message">Fields in red are required</div>
+
+				<ul id="error_message_box" class="error_message_box"></ul>
+					
+				<form action="{{route('send-message')}}" id="send_sms_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate">
+				@csrf                         
+					<fieldset>
+						<div class="form-group form-group-sm">
+							<label for="first_name_label" class="control-label col-xs-2">First name</label>			
+							<div class="col-xs-10">
+								<input type="text" name="first_name" value="{{ $value->first_name }}" class="form-control input-sm" readonly="true">
+							</div>
+						</div><br><br>
+						<div class="form-group form-group-sm">
+							<label for="last_name_label" class="control-label col-xs-2">Last name</label>	
+							<div class="col-xs-10">
+								<input type="text" name="last_name" value="{{ $value->last_name }}" class="form-control input-sm" readonly="true">
+							</div>
+						</div> <br><br>
+						<div class="form-group form-group-sm">
+							<label for="phone_label" class="control-label col-xs-2 required" aria-required="true">Phone number</label>			
+							<div class="col-xs-10">
+								<div class="input-group">
+									<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-phone-alt"></span></span>
+									<input type="text" name="phone_number" value="{{ $value->phone_number }}" class="form-control input-sm required" aria-required="true">
+								</div>
+							</div>
+						</div><br><br>
+						<div class="form-group form-group-sm">
+							<label for="message_label" class="control-label col-xs-2 required" aria-required="true">Message</label>			
+							<div class="col-xs-10">
+								<textarea name="message" cols="40" rows="10" class="form-control input-sm required" id="message" aria-required="true"></textarea>
+							</div>
+						</div>
+					</fieldset>
+				{{-- <script type="text/javascript">
+				$(document).ready(function()
+				{
+					$('#send_sms_form').validate($.extend({
+						submitHandler:function(form) 
+						{
+							$(form).ajaxSubmit({
+								success:function(response)
+								{
+									dialog_support.hide();
+									table_support.handle_submit('http://newpos.dbfindia.com/messages', response);
+								},
+								dataType:'json'
+							});
+						},
+						rules:
+						{
+							phone:
+							{
+								required:true,
+								number:true
+							},
+							message:
+							{
+								required:true,
+								number:false
+							}
+				   		},
+						messages:
+						{
+							phone:
+							{
+								required:"Phone number required",
+								number:"Phone number"
+							},
+							message:
+							{
+								required:"Message required"
+							}
+						}
+					}, form_support.error));
+				});
+			</script> --}}
+		</div>
+	</div>
+</div>
+</div>
+<div class="modal-footer" style="display: block;">
+<div class="bootstrap-dialog-footer">
+	<div class="bootstrap-dialog-footer-buttons">
+		<button class="btn btn-primary" id="submit" type="submit">Submit
+		</button>
+	</div>
+</div>
+</div>
+</form>
+
+</div>
+</div>
+</div>
+{{-- end send sms for employee....................... --}}
 	<?php  } ?>
 	</tbody>
 </table>
 </div>
+{{-- end view all employee....................... --}}
+
 <div id="footer">
 <!-- <div class="jumbotron push-spaces"> -->
 	<!-- <strong>  			 - </strong>.
@@ -1290,6 +1496,101 @@
 <!-- </div> -->
 			
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+<script type="text/javascript">
+//validation and submit handling
+
+	   $.validator.addMethod("mobile_regex", function(value, element) {
+		return this.optional(element) || /^\d{10}$/i.test(value);
+		}, "Please Enter No Only.");
+		
+		$.validator.addMethod("password_regex", function(value, element) {
+		return this.optional(element) || /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/i.test(value);
+		}, "Password must contain at least 1 lowercase, 1 uppercase, 1 numeric and 1 special character");
+		
+		$.validator.addMethod("email_regex", function(value, element) {
+		return this.optional(element) || /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/i.test(value);
+		}, "The Email Address Is Not Valid Or In The Wrong Format");
+		
+		$.validator.addMethod("name_regex", function(value, element) {
+		return this.optional(element) || /^[a-zA-Z ]{2,100}$/i.test(value);
+		}, "Please choose a name with only a-z 0-9.");
+		
+		$("#employee_form").validate({
+		  errorElement: 'p',
+        errorClass: 'help-inline',
+			
+    	rules: {
+
+	      // email:{
+	      	//   required: true,
+	      	//   email_regex: true
+	      // },
+	      	first_name:{
+		      	required:true,
+		      	name_regex:true
+	      	},
+		    last_name:{
+		      	required:true,
+		      	name_regex:true
+	      	},
+	      	phone_number:{
+		      	required:true,
+		      	mobile_regex:true
+	      	},
+	      	type:{
+		        required: true
+		    },
+	      	
+	      	username:
+			{
+				required:true,
+				minlength: 5
+			},
+			
+			password:
+			{
+				required:true,
+				minlength: 8
+			},	
+			repeat_password:
+			{
+				equalTo: "#password"
+			},
+		},
+		messages: 
+		{
+			first_name: "First Name is a required field.",
+			last_name: "Last Name is a required field.",
+			username:
+			{
+				required: "Username is a required field.",
+				minlength: "Username must be at least 5 characters in length."
+			},
+
+			password:
+			{
+				required:"Password is required.",
+				minlength: "Password must be at least 8 characters in length."
+			},
+			repeat_password:
+			{
+				equalTo: "Passwords do not match."
+			},
+			email: "The email address is not in the correct format."
+		},
+    
+	    
+      submitHandler: function(form) {
+    	form.submit();
+    	}
+ });
+</script>     
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
@@ -1316,7 +1617,7 @@
 } );
 </script>
 @endsection
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 //validation and submit handling
 $(document).ready(function()
 {
@@ -1444,4 +1745,4 @@ $(document).ready(function()
 		country_codes: 'IN'
 	});
 });
-</script>	
+</script>	 --}}

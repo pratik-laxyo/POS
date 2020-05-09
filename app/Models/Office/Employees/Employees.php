@@ -8,4 +8,7 @@ class Employees extends Model
 {
     protected $guarded = [];
     protected $table = 'employees';
+    public function usersInfo(){
+        return $this->belongsTo('App\Models\Office\Employees\EmployeesLogin','id');
+    }
 }
