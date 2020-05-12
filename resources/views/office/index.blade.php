@@ -17,11 +17,11 @@
 					Shop
 				</a>
 			</div>
-			<!-- <div class="module_item" title="Add, Update, Delete, and Search Employees.">
-				<a href="http://newpos.dbfindia.com/employees"><img src="http://newpos.dbfindia.com/images/menubar/employees.png" border="0" alt="Menubar Image"></a>
+			<div class="module_item" title="Add, Update, Delete, and Search Employees.">
+				<a href="{{ route('employees.index') }}"><img src="http://newpos.dbfindia.com/images/menubar/employees.png" border="0" alt="Menubar Image"></a>
 				<a href="">Employees</a>
 			</div>
-			<div class="module_item" title="Send Messages to Customers, Suppliers and Employees.">
+		<!-- 	<div class="module_item" title="Send Messages to Customers, Suppliers and Employees.">
 				<a href="http://newpos.dbfindia.com/messages"><img src="http://newpos.dbfindia.com/images/menubar/messages.png" border="0" alt="Menubar Image"></a>
 				<a href="http://newpos.dbfindia.com/messages">Messages</a>
 			</div>

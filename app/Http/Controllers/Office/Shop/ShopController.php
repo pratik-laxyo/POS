@@ -23,7 +23,7 @@ class ShopController extends Controller
     public function index()
     {
         $shop = Shop::all();
-        return view("office.shop.index",compact('shop'));
+            return view("office.shop.index",compact('shop'));
     }
 
     /**

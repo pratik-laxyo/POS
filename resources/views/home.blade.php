@@ -63,7 +63,11 @@
                            <br>
                            <h3>Current Stock</h3>
                            <h1><span class="fa fa-tags" style="color: white;"></span></h1>
+<<<<<<< HEAD
                            <h1 id="itemcount" class="loader_wait">{{ ($tabs !== '') ? $tabs[0]->id : '0' }}</h1>
+=======
+                           <h1 id="itemcount" class="loader_wait">{{-- {{ (!empty($tabs)) ? $tabs[0]->id : ""  }} --}}</h1>
+>>>>>>> 0b4585ee48b59885ec1952b86ec824c8c8b4ec71
                            <br>
                         </div>
                      </center>
@@ -76,7 +80,11 @@
                            <br>
                            <h3>Today's Sales</h3>
                            <h1><span class="fa fa-shopping-cart" style="color: white;"></span></h1>
+<<<<<<< HEAD
                            <h1 id="dailySales" class="loader_wait">{{ ($tabs !== '') ? $tabs[0]->id : '0' }}</h1>
+=======
+                           <h1 id="dailySales" class="loader_wait">{{-- {{ (!empty($tabs)) ? $tabs[0]->id : "" }} --}}</h1>
+>>>>>>> 0b4585ee48b59885ec1952b86ec824c8c8b4ec71
                            <br>
                         </div>
                      </center>
@@ -89,7 +97,11 @@
                            <br>
                            <h3>Today's Earning</h3>
                            <h1><span class="fa fa-inr" style="color: white;"></span></h1>
+<<<<<<< HEAD
                            <h1 id="totalSales" class="loader_wait">{{ ($tabs !== '') ? $tabs[0]->id : '0' }}</h1>
+=======
+                           <h1 id="totalSales" class="loader_wait">{{-- {{ (!empty($tabs)) ? $tabs[0]->id : "" }} --}}</h1>
+>>>>>>> 0b4585ee48b59885ec1952b86ec824c8c8b4ec71
                            <br>
                         </div>
                      </center>
