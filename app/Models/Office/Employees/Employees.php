@@ -11,4 +11,8 @@ class Employees extends Model
     public function usersInfo(){
         return $this->belongsTo('App\Models\Office\Employees\EmployeesLogin','id');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> laratrast

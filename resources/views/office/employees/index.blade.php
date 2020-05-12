@@ -62,82 +62,6 @@
 <div class="container">
 	<div class="row">
 
-		<script type="text/javascript">
-		$(document).ready(function()
-		{
-			dialog_support.init("button.modal-dlg-wide");
-
-			(function ($) {
-			'use strict';
-
-			$.fn.bootstrapTable.locales['en-US'] = {
-				formatLoadingMessage: function () {
-					return "Loading, please wait...";
-				},
-				formatRecordsPerPage: function (pageNumber) {
-					return "{0} rows per page".replace('{0}', pageNumber);
-				},
-				formatShowingRows: function (pageFrom, pageTo, totalRows) {
-					return "Showing {0} to {1} of {2} rows".replace('{0}', pageFrom).replace('{1}', pageTo).replace('{2}', totalRows);
-				},
-				formatSearch: function () {
-					return "Search";
-				},
-				formatNoMatches: function () {
-					return "There are no people to display.";
-				},
-				formatPaginationSwitch: function () {
-					return "Hide/Show pagination";
-				},
-				formatRefresh: function () {
-					return "Refresh";
-				},
-				formatToggle: function () {
-					return "Toggle";
-				},
-				formatColumns: function () {
-					return "Columns";
-				},
-				formatAllRows: function () {
-					return "All";
-				},
-				formatConfirmDelete : function() {
-					return "Are you sure you want to delete the selected employee(s)?";
-				},
-				formatConfirmRestore : function() {
-				return "Are you sure you want to restore selected employee(s)?";
-				}
-			};
-
-			$.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales["en-US"]);
-
-		})(jQuery);
-			table_support.init({
-				resource: 'http://newpos.dbfindia.com/employees',
-				headers: [{"field":"checkbox","title":"select","switchable":true,"sortable":false,"checkbox":"select","class":"print_hide","sorter":""},{"field":"people.person_id","title":"Id","switchable":true,"sortable":true,"checkbox":false,"class":"","sorter":""},{"field":"first_name","title":"First Name","switchable":true,"sortable":true,"checkbox":false,"class":"","sorter":""},{"field":"last_name","title":"Last Name","switchable":true,"sortable":true,"checkbox":false,"class":"","sorter":""},{"field":"email","title":"Email","switchable":true,"sortable":true,"checkbox":false,"class":"","sorter":""},{"field":"phone_number","title":"Phone Number","switchable":true,"sortable":true,"checkbox":false,"class":"","sorter":""},{"field":"messages","title":"","switchable":false,"sortable":false,"checkbox":false,"class":"print_hide","sorter":""},{"field":"edit","title":"","switchable":false,"sortable":false,"checkbox":false,"class":"print_hide","sorter":""}],
-				pageSize: 20,
-				uniqueId: 'people.person_id',
-				showRefresh: true,
-				sortName: 'people.person_id',
-				sortOrder: 'desc',
-				enableActions: function()
-				{
-					var email_disabled = $("td input:checkbox:checked").parents("tr").find("td a[href^='mailto:']").length == 0;
-					$("#email").prop('disabled', email_disabled);
-				}
-			});
-
-			$("#email").click(function(event)
-			{
-				var recipients = $.map($("tr.selected a[href^='mailto:']"), function(element)
-				{
-					return $(element).attr('href').replace(/^mailto:/, '');
-				});
-				location.href = "mailto:" + recipients.join(",");
-			});
-		});
-	</script>
-
 <div id="title_bar" class="btn-toolbar">
 	<button class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/employees/view" title="New Employee"  data-toggle="modal" data-target="#addCustomer">
 		<span class="glyphicon glyphicon-user">&nbsp;</span>New Employee	
@@ -1142,7 +1066,11 @@
 			</td> 
 		</tr>
 
+<<<<<<< HEAD
 {{-- Edit Customers code model....................... --}}
+=======
+{{-- Edit Employees code model....................... --}}
+>>>>>>> laratrast
    <div class="modal fade" id="editEmployee{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -1171,7 +1099,11 @@
                      <a data-toggle="tab" href="#customer_basic_info">Information</a>
                   </li>
                   <li role="presentation" class="">
+<<<<<<< HEAD
 					<a data-toggle="tab" href="#editemployee_login_info" aria-expanded="false">Login</a>
+=======
+					<a data-toggle="tab" href="#editemployee_login_info{{ $value->id }}" aria-expanded="false">Login</a>
+>>>>>>> laratrast
 					</li>
 					<li role="presentation" class="">
 						<a data-toggle="tab" href="#employee_permission_info" aria-expanded="false">Permissions</a>
@@ -1273,6 +1205,7 @@
                         
                </fieldset>
                 </div>
+<<<<<<< HEAD
      	{{-- start Login Employees code ............... --}}
 
 <div class="tab-pane" id="editemployee_login_info">
@@ -1282,36 +1215,70 @@
         
 		<div class="form-group form-group-sm">	
 			<label for="username" class="required control-label col-xs-3" aria-required="true">Username</label>	<br><br>				
+=======
+{{-- start Login Employees code ............... --}}
+
+		<?php dd( $value ); ?>
+<div class="tab-pane" id="editemployee_login_info{{ $value->id }}">
+	<fieldset>
+		{{-- <form action="{{route('employees.store')}}" id="employee_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate"> --}}
+        @csrf  
+		<div class="form-group form-group-sm">	
+			<label for="username" class="required control-label col-xs-3" aria-required="true">Username</label>					
+>>>>>>> laratrast
 			<div class="col-xs-8">
 				<div class="input-group">
 					<span class="input-group-addon input-sm">
 						<span class="glyphicon glyphicon-user"></span></span>
+<<<<<<< HEAD
 					<input type="text" name="username" value="{{$value->usersInfo}}" id="username" class="form-control input-sm">
 				</div>
 			</div>
 		</div><br><br>
 		<div class="form-group form-group-sm">	
 			<label for="password" class="control-label col-xs-3">Password</label><br><br>
+=======
+					<input type="text" name="username" value="{{ $value->id }}" id="username" class="form-control input-sm">
+				</div>
+			</div>
+		</div>
+		<div class="form-group form-group-sm">	
+			<label for="password" class="control-label col-xs-3">Password</label>					
+>>>>>>> laratrast
 			<div class="col-xs-8">
 				<div class="input-group">
 					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
 					<input type="password" name="password" value="" id="password" class="form-control input-sm">
 				</div>
 			</div>
+<<<<<<< HEAD
 		</div><br><br>
 
 		<div class="form-group form-group-sm">	
 			<label for="repeat_password" class="control-label col-xs-3">Password Again</label><br><br>	
+=======
+		</div>
+
+		<div class="form-group form-group-sm">	
+			<label for="repeat_password" class="control-label col-xs-3">Password Again</label>	
+>>>>>>> laratrast
 			<div class="col-xs-8">
 				<div class="input-group">
 					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
 					<input type="password" name="repeat_password" value="" id="repeat_password" class="form-control input-sm">
 				</div>
 			</div>
+<<<<<<< HEAD
 		</div><br><br>
 
 		<div class="form-group form-group-sm">
 			<label for="language" class="control-label col-xs-3">Language</label><br><br>					
+=======
+		</div>
+
+		<div class="form-group form-group-sm">
+			<label for="language" class="control-label col-xs-3">Language</label>					
+>>>>>>> laratrast
 			<div class="col-xs-8">
 				<div class="input-group">
 					<select name="language" class="form-control input-sm">
@@ -1347,9 +1314,14 @@
 	
 </div>
 {{-- end Login Employees code ............... --}}
+<<<<<<< HEAD
 
                </div>
              </div>
+=======
+</div>
+ </div>
+>>>>>>> laratrast
                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="submitUpdate">Submit </button>

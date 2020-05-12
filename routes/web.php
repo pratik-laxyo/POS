@@ -14,12 +14,13 @@
 //     return view('welcome');
 // });
 // Auth::routes();
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('/', function () {
-//     return Auth::check() ? view('/home') :  view('auth.login');
-// });
+Route::get('/', function () {
+    return Auth::check() ? view('/home') :  view('auth.login');
+});
 Auth::routes(['register' => false]);
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/customers', 'CustomerController');

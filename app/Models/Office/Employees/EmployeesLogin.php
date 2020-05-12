@@ -8,6 +8,9 @@ class EmployeesLogin extends Model
 {
     protected $guarded = [];
     protected $table = 'employees_logins';
+<<<<<<< HEAD
 
      
+=======
+>>>>>>> laratrast
 }

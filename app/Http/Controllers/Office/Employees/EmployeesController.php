@@ -21,10 +21,17 @@ class EmployeesController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $employees = Employees::with('usersInfo')->get();
        // dd($employees);
         
             return view("office.employees.index",compact('employees'));
+=======
+       $employees = Employees::with('usersInfo')->get();
+        // dd($employees);
+
+        return view("office.employees.index",compact('employees'));
+>>>>>>> laratrast
     }
 
     /**
