@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Manager;
+namespace App\Http\Controllers\Office\Employees;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Manager\MciBrand;
-class MCIBrandController extends Controller
+
+class EmployeesLoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class MCIBrandController extends Controller
      */
     public function index()
     {
-       dd('index');
-        
+        //
     }
 
     /**
@@ -26,8 +25,6 @@ class MCIBrandController extends Controller
     public function create()
     {
         //
-       dd('create');
-
     }
 
     /**
@@ -38,11 +35,7 @@ class MCIBrandController extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request);
-
-        $data = $request->validate(['brand_name'=>'required|unique:mci_brands,brand_name']);
-        MciBrand::create($data);
-        return back()->with('success','added Successfully');    
+        //
     }
 
     /**
@@ -76,9 +69,7 @@ class MCIBrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->validate(['brand_name'=>'required|unique:mci_brands,brand_name']);
-        MciBrand::find($id)->update($data);
-        return back()->with('success','updated Successfully');
+        //
     }
 
     /**
@@ -89,8 +80,6 @@ class MCIBrandController extends Controller
      */
     public function destroy($id)
     {
-        $currentDate = date('Y-m-d H:i:s');
-        MciBrand::where('id', $id)->update(['status' => 1,'deleted_at'=>$currentDate]);
-      return back()->with("success","Brand Soft Delete Successfully");
+        //
     }
 }

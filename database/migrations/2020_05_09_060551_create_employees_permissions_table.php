@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMciSizesTable extends Migration
+class CreateEmployeesPermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateMciSizesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mci_sizes', function (Blueprint $table) {
+        Schema::create('employees_permissions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('sizes_name',255)->nullable();
-            $table->string('alias',255)->nullable();
-            $table->string('status',2)->default(0);
-            $table->softDeletes();
+         
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateMciSizesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mci_sizes');
+        Schema::dropIfExists('employees_permissions');
     }
 }

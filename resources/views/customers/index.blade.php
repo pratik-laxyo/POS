@@ -192,7 +192,7 @@
              </div>
                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="submit">Send message</button>
+                    <button type="submit" class="btn btn-primary" id="submit">Send message</button>
                </div>
             </form>
               
@@ -919,6 +919,101 @@ nominatim.init({
 });
 });
 </script> --}}
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+<script type="text/javascript">
+//validation and submit handling
+
+     $.validator.addMethod("mobile_regex", function(value, element) {
+    return this.optional(element) || /^\d{10}$/i.test(value);
+    }, "Please Enter No Only.");
+    
+    $.validator.addMethod("password_regex", function(value, element) {
+    return this.optional(element) || /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/i.test(value);
+    }, "Password must contain at least 1 lowercase, 1 uppercase, 1 numeric and 1 special character");
+    
+    $.validator.addMethod("email_regex", function(value, element) {
+    return this.optional(element) || /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/i.test(value);
+    }, "The Email Address Is Not Valid Or In The Wrong Format");
+    
+    $.validator.addMethod("name_regex", function(value, element) {
+    return this.optional(element) || /^[a-zA-Z ]{2,100}$/i.test(value);
+    }, "Please choose a name with only a-z 0-9.");
+    
+    $("#customer_form").validate({
+      errorElement: 'p',
+        errorClass: 'help-inline',
+      
+      rules: {
+
+        // email:{
+          //   required: true,
+          //   email_regex: true
+        // },
+          first_name:{
+            required:true,
+            name_regex:true
+          },
+        last_name:{
+            required:true,
+            name_regex:true
+          },
+          phone_number:{
+            required:true,
+            mobile_regex:true
+          },
+          type:{
+            required: true
+        },
+          
+          username:
+        {
+          required:true,
+          minlength: 5
+        },
+        
+        password:
+        {
+          required:true,
+          minlength: 8
+        },  
+        repeat_password:
+        {
+          equalTo: "#password"
+        },
+      },
+      messages: 
+      {
+        first_name: "First Name is a required field.",
+        last_name: "Last Name is a required field.",
+        username:
+        {
+          required: "Username is a required field.",
+          minlength: "Username must be at least 5 characters in length."
+        },
+
+        password:
+        {
+          required:"Password is required.",
+          minlength: "Password must be at least 8 characters in length."
+        },
+        repeat_password:
+        {
+          equalTo: "Passwords do not match."
+        },
+        email: "The email address is not in the correct format."
+      },
+    
+      
+      submitHandler: function(form) {
+      form.submit();
+      }
+ });
+</script>
+
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>

@@ -14,12 +14,13 @@
 //     return view('welcome');
 // });
 // Auth::routes();
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('/', function () {
-//     return Auth::check() ? view('/home') :  view('auth.login');
-// });
+Route::get('/', function () {
+    return Auth::check() ? view('/home') :  view('auth.login');
+});
 Auth::routes(['register' => false]);
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/customers', 'CustomerController');
@@ -51,4 +52,5 @@ Route::resource('shop', 'Office\Shop\ShopController');
 Route::get('test', 'Office\Shop\ShopController@testUser')->name('test');
 
 Route::resource('employees', 'Office\Employees\EmployeesController');
+Route::post('send-message', 'Office\Employees\EmployeesController@sendMessage')->name('send-message');
 
