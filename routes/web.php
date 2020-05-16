@@ -25,14 +25,12 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/customers', 'CustomerController');
 Route::get('/allcustomer', 'CustomerController@getCustomer')->name('allcustomer');
-Route::resource('/items', 'ItemController');
 
 Route::resource('/manager', 'Manager\ManagerController');
 Route::resource('/item-kits', 'ItemKitsConroller');
 Route::resource('/reports', 'ReportsConroller');
 Route::resource('/receivings', 'ReceivingsConroller');
 Route::resource('/sales', 'SalesConroller');
-Route::resource('/offices', 'OfficesConroller');
 
 Route::post('import', 'CustomerController@import')->name('import');
 Route::get('export', 'CustomerController@export')->name('export');
@@ -51,6 +49,9 @@ Route::resource('/office', 'Office\OfficeController');
 Route::resource('shop', 'Office\Shop\ShopController');
 Route::get('test', 'Office\Shop\ShopController@testUser')->name('test');
 
+
 Route::resource('employees', 'Office\Employees\EmployeesController');
 Route::post('send-message', 'Office\Employees\EmployeesController@sendMessage')->name('send-message');
 
+Route::resource('/items', 'Item\ItemController');
+Route::post('fetch', 'Item\ItemController@fetchData')->name('fetch');

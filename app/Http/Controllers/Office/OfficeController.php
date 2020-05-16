@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Office;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Office\Office;
+use App\Models\Office\Office;
 
 class OfficeController extends Controller
 {

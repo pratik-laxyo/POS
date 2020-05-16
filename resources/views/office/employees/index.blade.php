@@ -1,129 +1,35 @@
 @extends('layouts.dbf')
-
 @section('content')
-<body data-gr-c-s-loaded="true">
-	<div class="wrapper">
-		<div class="topbar">
-			<div class="container">
-				<div class="navbar-left">
-					<div id="liveclock">08/05/2020 12:24:27 PM</div>
-				</div>
-
-				<div class="navbar-right" style="margin:0">
-					DBF Main Panel					  |   
-					<a href="http://newpos.dbfindia.com/home/logout">Logout</a>					
-				</div>
-
-				<div class="navbar-center" style="text-align:center">
-					<strong>DBF</strong>
-				</div>
-			</div>
-		</div>
-
-		<div class="navbar navbar-default" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-			
-					<a class="navbar-brand hidden-sm" href="http://newpos.dbfindia.com/">
-						<img src="http://newpos.dbfindia.com//images/dbflogo.png" width="75" height="45">
-					</a>
-				</div>
-
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<a href="http://newpos.dbfindia.com/employees" title="Employees" class="menu-icon">
-						<img id="menuicon_employees" src="http://newpos.dbfindia.com/images/menubar/employees.png" alt="Module Icon" border="0"><br>
-						Employees</a>
-							</li>
-						<li class=""><a href="http://newpos.dbfindia.com/messages" title="Messages" class="menu-icon">
-						<img id="menuicon_messages" src="http://newpos.dbfindia.com/images/menubar/messages.png" alt="Module Icon" border="0"><br>
-						Messages								</a>
-						</li>
-						<li class=""><a href="http://newpos.dbfindia.com/config" title="Configuration" class="menu-icon">
-						<img id="menuicon_config" src="http://newpos.dbfindia.com/images/menubar/config.png" alt="Module Icon" border="0"><br>Configuration	</a>
-						</li>
-						<li class=""><a href="http://newpos.dbfindia.com/offers" title="Offers" class="menu-icon">
-						<img id="menuicon_offers" src="http://newpos.dbfindia.com/images/menubar/offers.png" alt="Module Icon" border="0"><br>Offers</a>
-						</li>
-						<li class=""><a href="http://newpos.dbfindia.com/office" title="Office" class="menu-icon">
-						<img id="menuicon_office" src="http://newpos.dbfindia.com/images/menubar/office.png" alt="Module Icon" border="0"><br>Office</a>
-						</li>
-						</ul>
-				</div>
-			</div>
-		</div>
-		 
 <div class="container">
 	<div class="row">
 
-<div id="title_bar" class="btn-toolbar">
-	<button class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/employees/view" title="New Employee"  data-toggle="modal" data-target="#addCustomer">
-		<span class="glyphicon glyphicon-user">&nbsp;</span>New Employee	
-	</button>
+		<div id="title_bar" class="btn-toolbar">
+			<button class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/employees/view" title="New Employee"  data-toggle="modal" data-target="#addCustomer">
+				<span class="glyphicon glyphicon-user">&nbsp;</span>New Employee	
+			</button>
 
-	<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/employees/get_datatable">Data Table</a>
-	<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/manager/fetch_valid_customers_contact_no">Contact Numbers</a>
-</div>
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<div id="table_holder">
-	<div class="bootstrap-table">
-		<div class="fixed-table-toolbar">
-			<div class="bs-bars pull-left">
-				<div id="toolbar">
-				<div class="pull-left btn-toolbar">
-					<button id="delete" class="btn btn-default btn-sm" disabled="disabled">
-						<span class="glyphicon glyphicon-trash">&nbsp;</span>Delete			
-					</button>
-						
-					<button id="email" class="btn btn-default btn-sm" disabled="">
-						<span class="glyphicon glyphicon-envelope">&nbsp;</span>Email		
-					</button>
-				</div>
-				</div>
-			</div>
-			<div class="col-xs-3 mb-2" align="center">
-            <p>
-              @if($message = Session::get('success'))
-                <div class="alert alert-success">
-                  <p>{{ $message }}</p>
-                </div>
-              @endif
-            </p>
-        </div>
-			<div class="columns columns-right btn-group pull-right">
-				<button class="btn btn-default btn-sm" type="button" name="refresh" aria-label="refresh" title="Refresh"><i class="glyphicon glyphicon-refresh icon-refresh"></i>
-				</button>
-
-				<div class="export btn-group">
-					<button class="btn btn-default btn-sm dropdown-toggle" aria-label="export type" title="Export data" data-toggle="dropdown" type="button"><i class="glyphicon glyphicon-export icon-share"></i> <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu"><li role="menuitem" data-type="json"><a href="javascript:void(0)">JSON</a></li><li role="menuitem" data-type="xml"><a href="javascript:void(0)">XML</a></li><li role="menuitem" data-type="csv"><a href="javascript:void(0)">CSV</a></li><li role="menuitem" data-type="txt"><a href="javascript:void(0)">TXT</a></li><li role="menuitem" data-type="sql"><a href="javascript:void(0)">SQL</a></li><li role="menuitem" data-type="excel"><a href="javascript:void(0)">MS-Excel</a></li><li role="menuitem" data-type="pdf"><a href="javascript:void(0)">PDF</a></li></ul>
-				</div>
-			</div>
-			<div class="pull-right search"><input class="form-control input-sm" type="text" placeholder="Search">
-			</div>
+			<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/employees/get_datatable">Data Table</a>
+			<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/manager/fetch_valid_customers_contact_no">Contact Numbers</a>
 		</div>
+
+
+
+		<div id="table_holder">
+			<div class="bootstrap-table">
+				<div class="fixed-table-toolbar">
+					<div class="col-xs-3 mb-2" align="center">
+			            <p>
+			              @if($message = Session::get('success'))
+			                <div class="alert alert-success">
+			                  <p>{{ $message }}</p>
+			                </div>
+			              @endif
+			            </p>
+		        	</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
-<div id="table-sticky-header_sticky_anchor_end"></div></div>
 <div class="modal fade" id="addCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -145,8 +51,8 @@
 
 					<ul id="error_message_box" class="error_message_box"></ul>
 
-					<form action="{{route('employees.store')}}" id="employee_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate">
-                @csrf          
+				<form action="{{route('employees.store')}}" id="employee_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate">
+                	@csrf          
 						<ul class="nav nav-tabs nav-justified" data-tabs="tabs">
 							<li class="active" role="presentation">
 								<a data-toggle="tab" href="#employee_basic_info">Information</a>

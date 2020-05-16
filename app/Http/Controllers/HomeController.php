@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Office\Shop\Shop;
+use App\Models\Office\Shop\Shop;
 
 class HomeController extends Controller
 {

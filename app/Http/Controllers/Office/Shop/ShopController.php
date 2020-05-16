@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Office\Shop;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Office\Shop\Shop;
+use App\Models\Office\Shop\Shop;
 use Illuminate\Support\Facades\Validator;
 
 
