@@ -267,7 +267,7 @@
 			<div class="card" style="background-image: linear-gradient(to bottom,#efb1ab, #f77b7b);background-color: #f77b7b;min-height:200px;">
 				<br>
 				<h3>Control Panel</h3>
-				<h1><a href="http://newpos.dbfindia.com/manager/view_control_panel" title="Inventory"><span class="fa fa-cog" style="color: white;"></span></a></h1>
+				<h1><a href="{{ route('control_panel.index') }}" title="Inventory"><span class="fa fa-cog" style="color: white;"></span></a></h1>
 				<br>
 			</div>
 			</center>

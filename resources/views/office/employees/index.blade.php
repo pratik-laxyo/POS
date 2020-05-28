@@ -972,11 +972,9 @@
 			</td> 
 		</tr>
 
-<<<<<<< HEAD
 {{-- Edit Customers code model....................... --}}
-=======
+
 {{-- Edit Employees code model....................... --}}
->>>>>>> laratrast
    <div class="modal fade" id="editEmployee{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -1005,11 +1003,8 @@
                      <a data-toggle="tab" href="#customer_basic_info">Information</a>
                   </li>
                   <li role="presentation" class="">
-<<<<<<< HEAD
 					<a data-toggle="tab" href="#editemployee_login_info" aria-expanded="false">Login</a>
-=======
 					<a data-toggle="tab" href="#editemployee_login_info{{ $value->id }}" aria-expanded="false">Login</a>
->>>>>>> laratrast
 					</li>
 					<li role="presentation" class="">
 						<a data-toggle="tab" href="#employee_permission_info" aria-expanded="false">Permissions</a>
@@ -1111,123 +1106,91 @@
                         
                </fieldset>
                 </div>
-<<<<<<< HEAD
      	{{-- start Login Employees code ............... --}}
 
 <div class="tab-pane" id="editemployee_login_info">
-	<fieldset><br><br>
-		{{-- <form action="{{route('employees.store')}}" id="employee_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate"> --}}
-        @csrf  
-        
-		<div class="form-group form-group-sm">	
-			<label for="username" class="required control-label col-xs-3" aria-required="true">Username</label>	<br><br>				
-=======
-{{-- start Login Employees code ............... --}}
+		<!-- start Login Employees code ...............  -->
 
-		<?php dd( $value ); ?>
-<div class="tab-pane" id="editemployee_login_info{{ $value->id }}">
-	<fieldset>
-		{{-- <form action="{{route('employees.store')}}" id="employee_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate"> --}}
-        @csrf  
-		<div class="form-group form-group-sm">	
-			<label for="username" class="required control-label col-xs-3" aria-required="true">Username</label>					
->>>>>>> laratrast
-			<div class="col-xs-8">
-				<div class="input-group">
-					<span class="input-group-addon input-sm">
-						<span class="glyphicon glyphicon-user"></span></span>
-<<<<<<< HEAD
-					<input type="text" name="username" value="{{$value->usersInfo}}" id="username" class="form-control input-sm">
+		
+		<div class="tab-pane" id="editemployee_login_info{{ $value->id }}">
+			<fieldset>
+				{{-- <form action="{{route('employees.store')}}" id="employee_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate"> --}}
+		        @csrf  
+				<div class="form-group form-group-sm">	
+					<label for="username" class="required control-label col-xs-3" aria-required="true">Username</label>
+					<div class="col-xs-8">
+						<div class="input-group">
+							<span class="input-group-addon input-sm">
+								<span class="glyphicon glyphicon-user"></span></span>
+							<input type="text" name="username" value="{{$value->usersInfo}}" id="username" class="form-control input-sm">
+						</div>
+					</div>
+				</div><br><br>
+
+				<div class="form-group form-group-sm">	
+					<label for="password" class="control-label col-xs-3">Password</label>
+					<div class="col-xs-8">
+						<div class="input-group">
+							<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
+							<input type="password" name="password" value="" id="password" class="form-control input-sm">
+						</div>
+					</div>
+				</div><br><br>
+
+				<div class="form-group form-group-sm">	
+					<label for="repeat_password" class="control-label col-xs-3">Password Again</label>
+					<div class="col-xs-8">
+						<div class="input-group">
+							<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
+							<input type="password" name="repeat_password" value="" id="repeat_password" class="form-control input-sm">
+						</div>
+					</div>
+				</div><br><br>
+
+				<div class="form-group form-group-sm">
+					<label for="language" class="control-label col-xs-3">Language</label><br><br>
 				</div>
-			</div>
-		</div><br><br>
-		<div class="form-group form-group-sm">	
-			<label for="password" class="control-label col-xs-3">Password</label><br><br>
-=======
-					<input type="text" name="username" value="{{ $value->id }}" id="username" class="form-control input-sm">
+
+				<div class="form-group form-group-sm">
+					<label for="language" class="control-label col-xs-3">Language</label>
+					<div class="col-xs-8">
+						<div class="input-group">
+							<select name="language" class="form-control input-sm">
+								<option value="ar-EG:arabic">Arabic (Egypt)</option>
+								<option value="az-AZ:azerbaijani">Azerbaijani (Azerbaijan)</option>
+								<option value="bg:bulgarian">Bulgarian</option>
+								<option value="de:german">German (Germany)</option>
+								<option value="de-CH:german">German (Swiss)</option>
+								<option value="en-GB:english">English (Great Britain)</option>
+								<option value="en-US:english">English (United States)</option>
+								<option value="es:spanish">Spanish</option>
+								<option value="fr:french">French</option>
+								<option value="hr-HR:croatian">Croatian (Croatia)</option>
+								<option value="hu-HU:hungarian">Hungarian (Hungary)</option>
+								<option value="id:indonesian">Indonesian</option>
+								<option value="it:italian">Italian</option>
+								<option value="km:khmer">Central Khmer (Cambodia)</option>
+								<option value="lo:lao">Lao (Laos)</option>
+								<option value="nl-BE:dutch">Dutch (Belgium)</option>
+								<option value="pt-BR:portuguese-brazilian">Portuguese (Brazil)</option>
+								<option value="ru:russian">Russian</option>
+								<option value="sv:swedish">Swedish</option>
+								<option value="th:thai">Thai</option>
+								<option value="tr:turkish">Turkish</option>
+								<option value="vi:vietnamese">Vietnamese</option>
+								<option value="zh:simplified-chinese">Chinese</option>
+								<option value=":" selected="selected">System Language</option>
+							</select>
+						</div>
+					</div>
 				</div>
-			</div>
+			</fieldset>
 		</div>
-		<div class="form-group form-group-sm">	
-			<label for="password" class="control-label col-xs-3">Password</label>					
->>>>>>> laratrast
-			<div class="col-xs-8">
-				<div class="input-group">
-					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
-					<input type="password" name="password" value="" id="password" class="form-control input-sm">
-				</div>
-			</div>
-<<<<<<< HEAD
-		</div><br><br>
-
-		<div class="form-group form-group-sm">	
-			<label for="repeat_password" class="control-label col-xs-3">Password Again</label><br><br>	
-=======
-		</div>
-
-		<div class="form-group form-group-sm">	
-			<label for="repeat_password" class="control-label col-xs-3">Password Again</label>	
->>>>>>> laratrast
-			<div class="col-xs-8">
-				<div class="input-group">
-					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
-					<input type="password" name="repeat_password" value="" id="repeat_password" class="form-control input-sm">
-				</div>
-			</div>
-<<<<<<< HEAD
-		</div><br><br>
-
-		<div class="form-group form-group-sm">
-			<label for="language" class="control-label col-xs-3">Language</label><br><br>					
-=======
-		</div>
-
-		<div class="form-group form-group-sm">
-			<label for="language" class="control-label col-xs-3">Language</label>					
->>>>>>> laratrast
-			<div class="col-xs-8">
-				<div class="input-group">
-					<select name="language" class="form-control input-sm">
-						<option value="ar-EG:arabic">Arabic (Egypt)</option>
-						<option value="az-AZ:azerbaijani">Azerbaijani (Azerbaijan)</option>
-						<option value="bg:bulgarian">Bulgarian</option>
-						<option value="de:german">German (Germany)</option>
-						<option value="de-CH:german">German (Swiss)</option>
-						<option value="en-GB:english">English (Great Britain)</option>
-						<option value="en-US:english">English (United States)</option>
-						<option value="es:spanish">Spanish</option>
-						<option value="fr:french">French</option>
-						<option value="hr-HR:croatian">Croatian (Croatia)</option>
-						<option value="hu-HU:hungarian">Hungarian (Hungary)</option>
-						<option value="id:indonesian">Indonesian</option>
-						<option value="it:italian">Italian</option>
-						<option value="km:khmer">Central Khmer (Cambodia)</option>
-						<option value="lo:lao">Lao (Laos)</option>
-						<option value="nl-BE:dutch">Dutch (Belgium)</option>
-						<option value="pt-BR:portuguese-brazilian">Portuguese (Brazil)</option>
-						<option value="ru:russian">Russian</option>
-						<option value="sv:swedish">Swedish</option>
-						<option value="th:thai">Thai</option>
-						<option value="tr:turkish">Turkish</option>
-						<option value="vi:vietnamese">Vietnamese</option>
-						<option value="zh:simplified-chinese">Chinese</option>
-						<option value=":" selected="selected">System Language</option>
-					</select>
-				</div>
-			</div>
-		</div>
-	</fieldset>
-	
+		<!-- end Login Employees code ............... -->
 </div>
-{{-- end Login Employees code ............... --}}
-<<<<<<< HEAD
-
-               </div>
              </div>
-=======
 </div>
  </div>
->>>>>>> laratrast
                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="submitUpdate">Submit </button>

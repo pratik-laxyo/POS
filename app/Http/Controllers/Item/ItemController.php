@@ -11,12 +11,18 @@ use App\Models\Manager\MciBrand;
 use App\Models\Manager\MciSize;
 use App\Models\Manager\MciColor;
 use App\Models\Manager\MciSubCategory;
+use App\Models\Manager\ControlPanel\CustomTab;
 use App\Models\Office\Shop\Shop;
 use DB;
 use Helper;
 
 class ItemController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,12 +35,13 @@ class ItemController extends Controller
         $brand = MciBrand::where('status',0)->get();
         $size = MciSize::where('status',0)->get();
         $color = MciColor::where('status',0)->get();
+        $custom = CustomTab::where('tag',7)->where('status',0)->get();
         $shop = Shop::get();
 
         $items = Item::with(["ItemTax", "brandName", "categoryName", "subcategoryName", "sizeName", "colorName"])->get();
         // dd($items);
 
-        return view("items.index",compact('category','size','brand','color','subcategory','shop','items'));
+        return view("items.index",compact('category','size','brand','color','subcategory','shop','items','custom'));
     }
 
     /**
@@ -167,6 +174,7 @@ class ItemController extends Controller
 
     public function fetchData(Request $request) 
     {
+        //dd($request);
         $category = $request->cat_id;
         $subcategory = $request->subcat_id;
         $brand = $request->brand_id;
@@ -216,7 +224,17 @@ class ItemController extends Controller
             ->orWhere('item_number', 'ILIKE', "%{$search}%")
             ->orWhere('hsn_no', 'ILIKE', "%{$search}%")
             ->get();
-        }        
+        }
+        if(empty($subcategory) && empty($category) && empty($brand)){
+            $category = MciCategory::where('status',0)->get();
+            $subcategory = MciSubCategory::where('status',0)->get();
+            $brand = MciBrand::where('status',0)->get();
+            $size = MciSize::where('status',0)->get();
+            $color = MciColor::where('status',0)->get();
+            $shop = Shop::get();
+
+            $items = Item::with(["ItemTax", "brandName", "categoryName", "subcategoryName", "sizeName", "colorName"])->get();
+        }       
 
         return view('items.fetch', compact('items'));
     }

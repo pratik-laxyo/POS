@@ -48,8 +48,8 @@ class EmployeesController extends Controller
                 'first_name'=>'required',
                 'last_name'=>'required',
                 'phone_number'=>'required'
-
         ]);
+        
         $data['gender'] = $request->gender;
         $data['email'] = $request->email;
         $data['address_1'] = $request->address_1;
@@ -69,7 +69,7 @@ class EmployeesController extends Controller
        $userLogin['language'] = $request->language;
 
        $emLogin = EmployeesLogin::create($userLogin)->id;
-    // dd($userLogin['password']);
+        // dd($userLogin['password']);
 
         return back()->with('success','added Successfully');
     }

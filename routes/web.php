@@ -53,5 +53,34 @@ Route::get('test', 'Office\Shop\ShopController@testUser')->name('test');
 Route::resource('employees', 'Office\Employees\EmployeesController');
 Route::post('send-message', 'Office\Employees\EmployeesController@sendMessage')->name('send-message');
 
+/* Items */
 Route::resource('/items', 'Item\ItemController');
-Route::post('fetch', 'Item\ItemController@fetchData')->name('fetch');
+Route::post('fetch_item', 'Item\ItemController@fetchData')->name('fetch_item');
+/* Items */
+
+/* control Panel */
+Route::resource('control_panel', 'Manager\ControlPanel\ControlPanel');
+Route::get('cashier', 'Manager\ControlPanel\ControlPanel@Cashier')->name('cashier');
+Route::get('cashier_detail', 'Manager\ControlPanel\ControlPanel@CashierDetail')->name('cashier_detail');
+Route::get('offer_bundle', 'Manager\ControlPanel\ControlPanel@OfferBundle')->name('offer_bundle');
+Route::get('group_location', 'Manager\ControlPanel\ControlPanel@GroupLocation')->name('group_location');
+Route::get('custom_tab', 'Manager\ControlPanel\ControlPanel@CustomTab')->name('custom_tab');
+
+	/* cashier_details */
+	Route::post('add_cashier', 'Manager\ControlPanel\ControlPanel@AddCashierDetail')->name('add_cashier');
+	Route::post('update_status', 'Manager\ControlPanel\ControlPanel@UpdateCashierStatusDetail')->name('update_status');
+	Route::put('update_cashier', 'Manager\ControlPanel\ControlPanel@UpdateCashierDetail')->name('update_cashier');
+	/* cashier_details */
+
+	/* cashier */
+	Route::post('cashier_shop', 'Manager\ControlPanel\ControlPanel@UpdateCashierShop')->name('cashier_shop');
+	Route::post('fetch', 'Manager\ControlPanel\ControlPanel@fetchCashierShop')->name('fetch');
+	/* cashier */
+
+	/* Custom Tab */
+	Route::post('custom', 'Manager\ControlPanel\ControlPanel@UpdateCustomTab')->name('custom');
+	Route::post('fetchCustom', 'Manager\ControlPanel\ControlPanel@UpdateFetchCustomData')->name('fetchCustom');
+	Route::post('custom_status', 'Manager\ControlPanel\ControlPanel@UpdateCustomStatus')->name('custom_status');
+	/* Custom Tab */
+
+/* control Panel */

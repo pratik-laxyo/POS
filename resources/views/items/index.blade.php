@@ -1,21 +1,22 @@
 @extends('layouts.dbf')
+
 @section('content')
 <div class="container-fluid">
    <div class="container-fluid">
       <form id="FiltersForm">
          @csrf
          <div id="title_bar" class="btn-toolbar print_hide">
-            <button class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/items/excel_stock_up" title="Item Update from Excel">
-            <span class="glyphicon glyphicon-import">&nbsp;</span>Excel Update</button>
-            <button class="btn btn-info btn-sm pull-right modal-dlg" data-toggle="modal" data-target="#sheetImport" title="Item Import from Excel">
-            <span class="glyphicon glyphicon-import">&nbsp;</span>Excel Import</button>
-            <button class="btn btn-info btn-sm pull-right modal-dlg" data-toggle="modal" data-target="#myModal" title="New Item">
-            <span class="glyphicon glyphicon-tag">&nbsp;</span>New Item</button>
+            <a class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/items/excel_stock_up" title="Item Update from Excel">
+            <span class="glyphicon glyphicon-import">&nbsp;</span>Excel Update</a>
+            <a class="btn btn-info btn-sm pull-right modal-dlg" data-toggle="modal" data-target="#sheetImport" title="Item Import from Excel">
+            <span class="glyphicon glyphicon-import">&nbsp;</span>Excel Import</a>
+            <a class="btn btn-info btn-sm pull-right modal-dlg" data-toggle="modal" data-target="#myModal" title="New Item">
+            <span class="glyphicon glyphicon-tag">&nbsp;</span>New Item</a>
             <!-- <button disabled="true" id="delete" class="btn btn-default btn-sm print_hide">
             <span class="glyphicon glyphicon-trash">&nbsp;</span>Delete</button>
             <button disabled="true" id="bulk_edit" class="btn btn-default btn-sm modal-dlg print_hide" ,="" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/items/bulk_edit" title="Editing Multiple Items">
             <span class="glyphicon glyphicon-edit">&nbsp;</span>Bulk Edit</button> -->
-            <button class="btn btn-info btn-sm pull-right" name="submit" id="filter_data_btn">Get Items</button>
+            <input type="submit" class="btn btn-info btn-sm pull-right" name="submit" id="filter_data_btn" value="Get Items">
          </div>
 
          <div id="toolbar">
@@ -114,10 +115,10 @@
    $(document).ready(function() {
       $("#FiltersForm").on('submit', function(e) {
          e.preventDefault();
-         //alert($('#FiltersForm').serialize());
+         alert($('#FiltersForm').serialize());
          $.ajax({
             type: 'post',
-            url: '{{ route("fetch") }}',
+            url: 'fetch_item',
             data: $('#FiltersForm').serialize(),
             success: function(data) {
                $('#item-table').empty().html(data);
