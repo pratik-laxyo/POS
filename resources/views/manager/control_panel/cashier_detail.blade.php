@@ -216,7 +216,7 @@
 		function updateStatus(id, status){
 			var _token = $('input[name="_token"]').val();
 			$.ajax({
-      			type: "post",
+      			method: "POST",
       			url: "update_status",
       			data: { id:id, status:status, _token:_token },
       			success: function(data){

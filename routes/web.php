@@ -47,6 +47,7 @@ Route::resource('/mci-brand', 'Manager\MCIBrandController');
 
 Route::resource('/office', 'Office\OfficeController');
 Route::resource('shop', 'Office\Shop\ShopController');
+Route::resource('offers', 'Office\Offer\OfferController');
 Route::get('test', 'Office\Shop\ShopController@testUser')->name('test');
 
 
@@ -56,6 +57,7 @@ Route::post('send-message', 'Office\Employees\EmployeesController@sendMessage')-
 /* Items */
 Route::resource('/items', 'Item\ItemController');
 Route::post('fetch_item', 'Item\ItemController@fetchData')->name('fetch_item');
+Route::post('excel_import', 'Item\ItemController@excelImportItems')->name('excel_import');
 /* Items */
 
 /* control Panel */
@@ -82,5 +84,10 @@ Route::get('custom_tab', 'Manager\ControlPanel\ControlPanel@CustomTab')->name('c
 	Route::post('fetchCustom', 'Manager\ControlPanel\ControlPanel@UpdateFetchCustomData')->name('fetchCustom');
 	Route::post('custom_status', 'Manager\ControlPanel\ControlPanel@UpdateCustomStatus')->name('custom_status');
 	/* Custom Tab */
+
+	/* Offer Bundle */
+	Route::post('add_bundle', 'Manager\ControlPanel\ControlPanel@AddOfferBundle')->name('add_bundle');
+	Route::post('get_list', 'Manager\ControlPanel\ControlPanel@GetOfferBundleTypes')->name('get_list');
+	/* Offer Bundle */
 
 /* control Panel */

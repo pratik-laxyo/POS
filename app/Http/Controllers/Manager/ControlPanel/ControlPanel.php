@@ -9,6 +9,11 @@ use App\Models\Manager\ControlPanel\CashierShop;
 use App\Models\Manager\ControlPanel\CustomTab;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Office\Shop\Shop;
+use App\Models\Manager\MciCategory;
+use App\Models\Manager\MciBrand;
+use App\Models\Manager\MciSize;
+use App\Models\Manager\MciColor;
+use App\Models\Manager\MciSubCategory;
 
 class ControlPanel extends Controller
 {
@@ -40,8 +45,13 @@ class ControlPanel extends Controller
     }
 
     public function OfferBundle(Request $request){
-        $cashier = Cashier::get();
-        return view("manager.control_panel.offer_bundle");
+        $shop = Shop::get();
+        $category = MciCategory::get();
+        $brand = MciBrand::get();
+        $size = MciSize::get();
+        $color = MciColor::get();
+        $subcategory = MciSubCategory::get();
+        return view("manager.control_panel.offer_bundle", compact('category'));
     }
 
     public function GroupLocation(Request $request){
@@ -194,5 +204,30 @@ class ControlPanel extends Controller
         }else{
             CustomTab::where('id', $request->id)->update(['status'=> '0']);            
         }
+    }
+
+    public function GetOfferBundleTypes(Request $request){
+        dd($request);
+        $type = $request->type;
+        if($type == 'Category'){
+            $data = MciCategory::get();
+        }
+        if($type == 'Subcategory'){
+            $data = MciSubCategory::get();
+        }
+        if($type == 'Brand'){
+            $data = MciBrand::get();
+        }
+        if($type == 'Tag'){
+            // $data = MciCategory::get();
+        }
+        if($type == 'Barcode'){
+            // $data = MciCategory::get();
+        }
+        
+    }
+
+    public function AddOfferBundle(Request $request){
+        dd($request);
     }
 }

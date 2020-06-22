@@ -224,7 +224,10 @@
 
                            <div class="form-group col-md-12">
                               <label for="deleted">Deleted</label>
-                              <input type="checkbox" name="deleted" value="1" id="deleted">
+
+                              <div class="col-md-8" style="float: right;">
+                                 <input type="checkbox" name="deleted" value="1" id="deleted">
+                              </div>
                            </div>
 
                            <div class="form-group col-md-12">
@@ -305,48 +308,43 @@
                <div class="bootstrap-dialog-title" id="86eb159f-1194-4d0e-8190-5e3598f1bf52_title">Item Import from Excel</div>
             </div>
          </div>
-         <div class="modal-body">
-            <div class="bootstrap-dialog-body">
-               <div class="bootstrap-dialog-message">
-                  <div>
-                     <ul id="error_message_box" class="error_message_box"></ul>
-                     <form action="" id="excel_form" enctype="multipart/form-data" method="post">
+         <form id="excel_form" action="{{ route('excel_import') }}" enctype="multipart/form-data" method="post">
+            @csrf
+            <div class="modal-body">
+               <div class="bootstrap-dialog-body">
+                  <div class="bootstrap-dialog-message">
+                     <div>
+                        <!-- <ul id="error_message_box" class="error_message_box">dddd</ul> -->
+                        <div class="errMsg alert-danger"></div>
                         <fieldset id="item_basic_info1">
-                           <div class="form-group">
-                              <div class="col-xs-4">
-                                 <label>Sheet Uploader</label>
-                              </div>
-                              <div class="col-md-8">
-                                 <select class="form-control" name="sheet_uploader" required="" aria-required="true">
+
+                           <div class="form-group col-md-12">
+                              <label>Sheet Uploader</label>
+                              <div class="col-md-8" style="float: right;">
+                                 <select class="form-control input-sm" name="sheet_uploader">
                                     <option value="">Select Name</option>
                                     @if(!empty($custom))
                                        @foreach($custom as $customs)
-                                          <option value="25">{{ $customs->title }}</option>
-                                          <!-- <option value="25">Narayan Shinde</option>
-                                          <option value="26">Aashish Pal</option>
-                                          <option value="29">Sunil Shekhawat</option> -->
+                                          <option value="{{ $customs->id }}">{{ $customs->title }}</option>
                                        @endforeach
                                     @endif
                                  </select>
                               </div>
                            </div>
-                           <div class="form-group">
-                              <div class="col-xs-4">
-                                 <label>Password</label>
-                              </div>
-                              <div class="col-md-8">
-                                 <input class="form-control" type="password" name="password" required="" aria-required="true">
+
+                           <div class="form-group col-md-12">
+                              <label for="password">Password</label>       
+                              <div class="col-md-8" style="float: right;">
+                                 <input type="password" name="password" class="form-control input-sm">
                               </div>
                            </div>
-                           <div class="form-group">
-                              <div class="col-xs-4">
-                                 <label>Function</label>
-                              </div>
-                              <div class="col-md-8">
-                                 <select name="sheet_type" class="form-control">
+
+                           <div class="form-group col-md-12">
+                              <label>Function</label>
+                              <div class="col-md-8" style="float: right;">
+                                 <select name="sheet_type" class="form-control input-sm">
                                     <option value="">-- Select --</option>
                                     <option value="new_stock">Excel Import</option>
-                                    <!--<option value='update_stock'>Excel Update</option>-->
                                     <option value="undelete_stock">Excel Undelete</option>
                                  </select>
                               </div>
@@ -356,26 +354,22 @@
                                  <a href="http://newpos.dbfindia.com/items/excel">Download Import Excel Template (CSV)</a>
                               </div>
                            </div>
-                           <div class="form-group">
-                              <div class="col-xs-12">
-                                 <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                    <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i><span class="fileinput-filename"></span></div>
-                                    <span class="input-group-addon input-sm btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" id="file_path" name="file_path" accept=".csv"></span>
-                                    <a href="#" class="input-group-addon input-sm btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                 </div>
-                              </div>
+                           <div class="form-group col-md-12">
+                              <input type="file" name="file_path" accept=".xls" class="form-control input-sm">
                            </div>
                         </fieldset>
-                     </form>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-         <div class="modal-footer" style="display: block;">
-            <div class="bootstrap-dialog-footer">
-               <div class="bootstrap-dialog-footer-buttons"><button class="btn btn-primary" id="submit">Submit</button></div>
+            <div class="modal-footer" style="display: block;">
+               <div class="bootstrap-dialog-footer">
+                  <div class="bootstrap-dialog-footer-buttons">
+                     <button class="btn btn-primary" type="submit">Submit</button>
+                  </div>
+               </div>
             </div>
-         </div>
+         </form>
       </div>
    </div>
 </div>
@@ -386,6 +380,12 @@
    #table123_length{
       display: none !important;
    }
+   .errMsg{
+      padding: 10px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      display: none;
+   }
 </style>
 
 <script type="text/javascript">
@@ -393,12 +393,6 @@
       $('#table123').DataTable({
          "pageLength": 30,
          "searching": false
-      });
-
-      $("#formValidate").on("submit", function(){
-         /*if($(".help-inline").length > 12){
-            $(".help-inline").empty();
-         }*/
       });
    });
 
@@ -431,6 +425,31 @@
          reorder_level:{
             required:true
          },
+      },
+       
+      messages: {},
+      submitHandler: function(form) { 
+         form.submit();
+      }
+   });
+
+   $("#excel_form").validate({
+      errorElement: 'p',
+      errorClass: 'help-inline',
+      
+      rules: {
+         sheet_uploader:{
+            required:true
+         },
+         password:{
+            required:true
+         },
+         sheet_type:{
+            required:true
+         },
+         file_path:{
+            required:true
+         }
       },
        
       messages: {},

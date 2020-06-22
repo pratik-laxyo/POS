@@ -157,45 +157,42 @@
 
     <div id="Subcategory" class="tab-pane fade" style="margin-bottom: 20px;">
       <h3>Sub-Category</h3>
-      <div>
-        <form id="customer_form" class="form-horizontal" method="post" action="{{ route('mci-subcategory.store') }}" >
-           @csrf
-	    	<span class="col-md-5">
-			<input type="text" id="sub_categories_name" class="form-control input-sm" placeholder="Enter Sub-Category" name="sub_categories_name" value="{{ old('sub_categories_name')}}">
-			<span id="sub_categories_name">
-			@error('sub_categories_name')
-              <span class="text-danger" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-            @enderror
-			</span>
-			</span>
-			<span class="col-md-5">
-			{{-- <select id="category_name"class="form-control input-sm" name="category_name">
-			<option value=""><--SELECT CATEGORY--></option>
-				
-			</select> --}}
-			<input list="brow" placeholder="SEARCH AND SELECT CATEGORY" class="form-control input-sm" name="category_name">
-			<datalist id="brow">
-			  <?php foreach ($mciCategory as $value)
-			{ ?>
-			<option value="{{$value->id}}">{{$value->category_name}}</option>
-			<?php }?>
-			</datalist>
-			<span id="category_name">
-			@error('category_name')
-              <span class="text-danger" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-            @enderror
-			</span>
-			<div class="mt-2">
-				<span class="col-md-2 mt-2">
-				<button type="submit" id="save" class="btn btn-sm btn-success">Create</button>
-			</span>
-			</div>
-	    </form>
-      </div>
+	    <div class="">
+	        <form id="customer_form" class="form-horizontal" method="post" action="{{ route('mci-subcategory.store') }}" >
+	           @csrf
+		    	<span class="col-md-5">
+				<input type="text" id="sub_categories_name" class="form-control input-sm" placeholder="Enter Sub-Category" name="sub_categories_name" value="{{ old('sub_categories_name')}}">
+				<span id="sub_categories_name">
+				@error('sub_categories_name')
+	              <span class="text-danger" role="alert">
+	              <strong>{{ $message }}</strong>
+	              </span>
+	            @enderror
+				</span>
+				</span>
+				<span class="col-md-5">
+					<select id="category_name"class="form-control input-sm" name="category_name">
+						<option value="">---- SELECT CATEGORY ----</option>
+						<?php foreach ($mciCategory as $value) { ?>
+							<option value="{{$value->id}}">{{ $value->category_name }}</option>
+						<?php } ?>
+					</select>
+					<span id="category_name">
+						@error('category_name')
+			              <span class="text-danger" role="alert">
+			              	<strong>{{ $message }}</strong>
+			              </span>
+			            @enderror
+					</span>
+				</span>
+				<div class="mt-2">
+					<span class="col-md-2 mt-2">
+						<button type="submit" id="save" class="btn btn-sm btn-success">Create</button>
+					</span>
+				</div>
+		    </form>
+	    </div>
+
 	    <div class="container ">
 		<table id="example1" class="display" style="width:100%">
         <thead>

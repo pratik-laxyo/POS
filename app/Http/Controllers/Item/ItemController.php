@@ -13,7 +13,9 @@ use App\Models\Manager\MciColor;
 use App\Models\Manager\MciSubCategory;
 use App\Models\Manager\ControlPanel\CustomTab;
 use App\Models\Office\Shop\Shop;
+use App\Imports\ItemsImport;
 use DB;
+use Excel;
 use Helper;
 
 class ItemController extends Controller
@@ -237,5 +239,13 @@ class ItemController extends Controller
         }       
 
         return view('items.fetch', compact('items'));
+    }
+
+    public function excelImportItems(Request $request){
+        $datas = Excel::import(new ItemsImport, request()->file('file_path'));
+        if($datas){
+            dd($datas);
+            // return redirect()->route('items.index')->with('success','Item Added successfully.');
+        }
     }
 }
