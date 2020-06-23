@@ -88,6 +88,6 @@ Route::get('custom_tab', 'Manager\ControlPanel\ControlPanel@CustomTab')->name('c
 	/* Offer Bundle */
 	Route::post('add_bundle', 'Manager\ControlPanel\ControlPanel@AddOfferBundle')->name('add_bundle');
 	Route::post('get_list', 'Manager\ControlPanel\ControlPanel@GetOfferBundleTypes')->name('get_list');
-	/* Offer Bundle */
+	/* Offer Bundle */	
 
 /* control Panel */

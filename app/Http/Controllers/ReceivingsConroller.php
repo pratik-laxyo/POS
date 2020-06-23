@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Office\Employees;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class EmployeesLoginController extends Controller
+class ReceivingsConroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,8 @@ class EmployeesLoginController extends Controller
      */
     public function index()
     {
-        //
+         return view("receivings.index");
+        
     }
 
     /**

@@ -3,10 +3,21 @@
 <div class="container">
 	<div class="row">
 
+<<<<<<< HEAD
 		<div id="title_bar" class="btn-toolbar">
 			<button class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/employees/view" title="New Employee"  data-toggle="modal" data-target="#addCustomer">
 				<span class="glyphicon glyphicon-user">&nbsp;</span>New Employee	
 			</button>
+=======
+<div id="title_bar" class="btn-toolbar">
+	<button class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/employees/view" title="New Employee"  data-toggle="modal" data-target="#addCustomer">
+		<span class="glyphicon glyphicon-user">&nbsp;</span>New Employee	
+	</button>
+
+	<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/employees/get_datatable">Data Table</a>
+	<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/manager/fetch_valid_customers_contact_no">Contact Numbers</a>
+</div>
+>>>>>>> 71f51671f159b15b9a024a3da862e24529a325e6
 
 			<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/employees/get_datatable">Data Table</a>
 			<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/manager/fetch_valid_customers_contact_no">Contact Numbers</a>
@@ -876,6 +887,15 @@
 		</ul>
 		</fieldset>
 
+<<<<<<< HEAD
+		</div>
+		<div class="modal-footer" >
+		<div class="bootstrap-dialog-footer">
+			<div class="bootstrap-dialog-footer-buttons">
+				<button class="btn btn-primary" id="submit" type="submit">Submit</button>
+			</div>
+=======
+>>>>>>> 71f51671f159b15b9a024a3da862e24529a325e6
 		</div>
 		<div class="modal-footer" >
 		<div class="bootstrap-dialog-footer">
@@ -886,6 +906,11 @@
 	</div>
 </form>
 	</div>
+<<<<<<< HEAD
+</form>
+	</div>
+=======
+>>>>>>> 71f51671f159b15b9a024a3da862e24529a325e6
 {{-- end permission for Employees code......... --}}
 	
 
@@ -972,8 +997,11 @@
 			</td> 
 		</tr>
 
+<<<<<<< HEAD
 {{-- Edit Customers code model....................... --}}
 
+=======
+>>>>>>> 71f51671f159b15b9a024a3da862e24529a325e6
 {{-- Edit Employees code model....................... --}}
    <div class="modal fade" id="editEmployee{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -1003,7 +1031,10 @@
                      <a data-toggle="tab" href="#customer_basic_info">Information</a>
                   </li>
                   <li role="presentation" class="">
+<<<<<<< HEAD
 					<a data-toggle="tab" href="#editemployee_login_info" aria-expanded="false">Login</a>
+=======
+>>>>>>> 71f51671f159b15b9a024a3da862e24529a325e6
 					<a data-toggle="tab" href="#editemployee_login_info{{ $value->id }}" aria-expanded="false">Login</a>
 					</li>
 					<li role="presentation" class="">
@@ -1106,6 +1137,7 @@
                         
                </fieldset>
                 </div>
+<<<<<<< HEAD
      	{{-- start Login Employees code ............... --}}
 
 <div class="tab-pane" id="editemployee_login_info">
@@ -1189,6 +1221,82 @@
 		<!-- end Login Employees code ............... -->
 </div>
              </div>
+=======
+{{-- start Login Employees code ............... --}}
+
+		<?php dd( $value ); ?>
+<div class="tab-pane" id="editemployee_login_info{{ $value->id }}">
+	<fieldset>
+		{{-- <form action="{{route('employees.store')}}" id="employee_form" class="form-horizontal" method="post" accept-charset="utf-8" novalidate="novalidate"> --}}
+        @csrf  
+		<div class="form-group form-group-sm">	
+			<label for="username" class="required control-label col-xs-3" aria-required="true">Username</label>					
+			<div class="col-xs-8">
+				<div class="input-group">
+					<span class="input-group-addon input-sm">
+						<span class="glyphicon glyphicon-user"></span></span>
+					<input type="text" name="username" value="{{ $value->id }}" id="username" class="form-control input-sm">
+				</div>
+			</div>
+		</div>
+		<div class="form-group form-group-sm">	
+			<label for="password" class="control-label col-xs-3">Password</label>					
+			<div class="col-xs-8">
+				<div class="input-group">
+					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
+					<input type="password" name="password" value="" id="password" class="form-control input-sm">
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-sm">	
+			<label for="repeat_password" class="control-label col-xs-3">Password Again</label>	
+			<div class="col-xs-8">
+				<div class="input-group">
+					<span class="input-group-addon input-sm"><span class="glyphicon glyphicon-lock"></span></span>
+					<input type="password" name="repeat_password" value="" id="repeat_password" class="form-control input-sm">
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-sm">
+			<label for="language" class="control-label col-xs-3">Language</label>					
+			<div class="col-xs-8">
+				<div class="input-group">
+					<select name="language" class="form-control input-sm">
+						<option value="ar-EG:arabic">Arabic (Egypt)</option>
+						<option value="az-AZ:azerbaijani">Azerbaijani (Azerbaijan)</option>
+						<option value="bg:bulgarian">Bulgarian</option>
+						<option value="de:german">German (Germany)</option>
+						<option value="de-CH:german">German (Swiss)</option>
+						<option value="en-GB:english">English (Great Britain)</option>
+						<option value="en-US:english">English (United States)</option>
+						<option value="es:spanish">Spanish</option>
+						<option value="fr:french">French</option>
+						<option value="hr-HR:croatian">Croatian (Croatia)</option>
+						<option value="hu-HU:hungarian">Hungarian (Hungary)</option>
+						<option value="id:indonesian">Indonesian</option>
+						<option value="it:italian">Italian</option>
+						<option value="km:khmer">Central Khmer (Cambodia)</option>
+						<option value="lo:lao">Lao (Laos)</option>
+						<option value="nl-BE:dutch">Dutch (Belgium)</option>
+						<option value="pt-BR:portuguese-brazilian">Portuguese (Brazil)</option>
+						<option value="ru:russian">Russian</option>
+						<option value="sv:swedish">Swedish</option>
+						<option value="th:thai">Thai</option>
+						<option value="tr:turkish">Turkish</option>
+						<option value="vi:vietnamese">Vietnamese</option>
+						<option value="zh:simplified-chinese">Chinese</option>
+						<option value=":" selected="selected">System Language</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	
+</div>
+{{-- end Login Employees code ............... --}}
+>>>>>>> 71f51671f159b15b9a024a3da862e24529a325e6
 </div>
  </div>
                <div class="modal-footer">

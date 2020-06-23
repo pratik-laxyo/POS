@@ -85,4 +85,10 @@
     }
 </script>
 
+<style type="text/css">
+  .select2{
+      width: 100% !important;
+  }
+</style>
+
 @endsection

@@ -20,54 +20,16 @@
              </tr>
           </thead>
           <tbody>
-          	@if(!empty($cashier))
-          		@foreach($cashier as $cashiers)
-		            <tr id="{{ $cashiers->id }}" role="row" class="odd">
-		                <td class="sorting_1">{{ $cashiers->id }}</td>
-		                <td>{{ $cashiers->name }}</td>
-		                <td>{{ $cashiers->webkey }}</td>
-		                <td>{{ $cashiers->contact_no }}</td>
-		                <td>
-		                   <a class="modal-dlg" id="updteModal" data-toggle="modal" data-id="{{ $cashiers->id }}" data-target="#UpdateCashier{{ $cashiers->id }}" style="font-size:20px"><i class="fa fa-pencil"></i></a> | 
-		                   <input onchange="updateStatus('{{ $cashiers->id }}', '{{ $cashiers->status }}')" value="{{ $cashiers->status }}" class="toggle-one" name="status" @if($cashiers->status == '0') checked @endif type="checkbox" data-size="mini">
-		                </td>
+          	@if(!empty($bundles))
+          		@foreach($bundles as $bundle)
+		            <tr id="{{ $bundle->id }}" role="row" class="odd">
+		                <td class="sorting_1">{{ $bundle->id }}</td>
+		                <td>{{ $bundle->title }}</td>
+		                <td>{{ $bundle->type }}</td>
+		                <td>{{ $bundle->bundle }}</td>
+		                <td></td>
 		            </tr>
 
-
-		            <!-- Update Modal -->
-					<div class="modal bootstrap-dialog modal-dlg type-primary fade size-normal in" id="UpdateCashier{{ $cashiers->id }}" role="dialog">
-					    <div class="modal-dialog">
-					      <!-- Modal content-->
-					      <div class="modal-content">
-					        <div class="modal-header">
-					          <button type="button" class="close" data-dismiss="modal">&times;</button>
-					          <h4 class="modal-title">UPDATE Cashier</h4>
-					        </div>
-					        <div class="modal-body">
-						        <form id="cashierUpdate{{ $cashiers->id }}">
-						        	@csrf
-								    <div class="form-group">
-								        <label for="cashier_name">Cashier Name</label>
-								        <input type="text" class="form-control" name="cashier_name" value="{{ $cashiers->name }}" placeholder="CASHIER NAME">
-								    </div>
-
-								    <div class="form-group">
-								        <label for="cashier_webkey">Webkey</label>
-								        <input type="text" class="form-control" name="cashier_webkey" value="{{ $cashiers->webkey }}" placeholder="WEBKEY">
-								    </div>
-
-								    <div class="form-group">
-								        <label for="contact_no">Contact No.</label>
-								        <input type="text" name="contact_no" class="form-control" value="{{ $cashiers->contact_no }}" placeholder="CONTACT NUMBER">
-								    </div>
-
-								    <button class="btn btn-primary" style="float: right">UPDATE</button>
-								</form>
-					        </div>
-					      </div>   
-					    </div>
-					</div>
-					<!-- Modal -->
 
 		        @endforeach
 		    @endif
@@ -121,13 +83,14 @@
 						        		@endforeach
 						        	@endif
 						        </select>
+						        <p for="cat_id" id="catErrorMsg" generated="true" class="help-inline"></p>
 						    </div>
 						</div>
 				    </div>
 
 				    <div class="form-group">
-				        <label for="select">Select</label>
-				        <input type="text" name="select" class="form-control" id="select">
+				        <label for="mySelect">Select</label>
+				        <select name="select[]" class="form-control" id="mySelect" multiple="multiple"></select>
 				    </div>
 
 				    <button type="submit" name="submit" class="btn btn-primary" style="float: right">ADD</button>
@@ -176,45 +139,54 @@
 		    messages: {
 		    },
       		submitHandler: function(form) {
-      			alert($("#bundleAdd").serialize());
-    			$.ajax({
+      			$.ajax({
 	      			type: "post",
 	      			url: "add_bundle",
 	      			data: $("#bundleAdd").serialize(),
 	      			success: function(data){
-	      				alert(data);
-	      				/*$('#bundleAdd').trigger("reset");
+	      				console.log(data);
+	      				$('#bundleAdd').trigger("reset");
 	      				$('#AddBundle').modal("hide");
 	      				$("#successMsg").html(data.successMsg).delay(2000).fadeOut();
 	      				setTimeout(function() {
 						    location.reload();
-						}, 2000);*/
+						}, 2000);
 	      			}
 	      		});
     		}
  		});
 
-		function updateStatus(id, status){
-			var _token = $('input[name="_token"]').val();
-			$.ajax({
-      			type: "post",
-      			url: "update_status",
-      			data: { id:id, status:status, _token:_token },
-      			success: function(data){
-      				console.log(data);
-      			}
-      		});
-		}
-
-
 	  	$(document).ready(function() {
 	      	$('#cashier_list').DataTable();
+	      	$('#mySelect').select2();
 	    });
 
 	    function selectType(){
 	    	var type_id = document.getElementById("type_id").value;
 			if(type_id == 'Subcategory'){
 				$("#hideDiv").css("display", "block");
+				$("#cat_id").on("change", function(e){
+					$('#mySelect').empty();
+					var _token = $('input[name="_token"]').val();
+					var cat_id = document.getElementById("cat_id").value;
+					if(cat_id == 0){
+						$("#catErrorMsg").text("This field is required.");
+					}
+					$.ajax({
+						type: "post",
+						url: "get_list",
+						data: { type:'Subcategory', cat_id:cat_id, _token:_token },
+						success: function(data) {
+							console.log(data);
+							$.each(data, function(key, value) {
+								console.log(value);
+								if(type_id == "Subcategory"){
+							    	$('#mySelect').append($("<option></option>").attr("value", value.id).text(value.sub_categories_name)); 
+							    }
+							});
+						}
+					});
+				});
 			} else {
 				$("#hideDiv").css("display", "none");
 			}
@@ -222,15 +194,23 @@
 		}
 
 		function selectCat(id){
+			$('#mySelect').empty();
 			var cat_id = document.getElementById("cat_id").value;
-			console.log(cat_id);
 			var _token = $('input[name="_token"]').val();
 			$.ajax({
 				type: "post",
 				url: "get_list",
-				data: { type: id, cat_id: cat_id, _token:_token },
+				data: { type:id, cat_id:cat_id, _token:_token },
 				success: function(data) {
-					alert(data);
+					console.log(data);
+					$.each(data, function(key, value) {
+						if(id == "Category"){
+					    	$('#mySelect').append($("<option></option>").attr("value", value.id).text(value.category_name)); 
+					    }
+					    if(id == "Brand"){
+					    	$('#mySelect').append($("<option></option>").attr("value", value.id).text(value.brand_name)); 
+					    }
+					});
 				}
 			});
 		}

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Manager\ControlPanel\Cashier;
 use App\Models\Manager\ControlPanel\CashierShop;
 use App\Models\Manager\ControlPanel\CustomTab;
+use App\Models\Manager\ControlPanel\OfferBundles;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Office\Shop\Shop;
 use App\Models\Manager\MciCategory;
@@ -45,13 +46,13 @@ class ControlPanel extends Controller
     }
 
     public function OfferBundle(Request $request){
-        $shop = Shop::get();
+        $bundles = OfferBundles::get();
+        foreach ($bundles as $val) {
+            # code...
+        }
         $category = MciCategory::get();
-        $brand = MciBrand::get();
-        $size = MciSize::get();
-        $color = MciColor::get();
-        $subcategory = MciSubCategory::get();
-        return view("manager.control_panel.offer_bundle", compact('category'));
+
+        return view("manager.control_panel.offer_bundle", compact('category', 'bundles'));
     }
 
     public function GroupLocation(Request $request){
@@ -207,27 +208,51 @@ class ControlPanel extends Controller
     }
 
     public function GetOfferBundleTypes(Request $request){
-        dd($request);
+        // dd($request);
         $type = $request->type;
-        if($type == 'Category'){
+        $cat_id = $request->cat_id;
+        if($type == 'Category' && $cat_id == 0){
             $data = MciCategory::get();
         }
         if($type == 'Subcategory'){
-            $data = MciSubCategory::get();
+            $data = MciSubCategory::where("parent_id", $cat_id)->get();
         }
-        if($type == 'Brand'){
+        if($type == 'Brand' && $cat_id == 0){
             $data = MciBrand::get();
         }
         if($type == 'Tag'){
-            // $data = MciCategory::get();
+            $data = "";
         }
         if($type == 'Barcode'){
-            // $data = MciCategory::get();
+            $data = "";
         }
-        
+        return $data;
     }
 
     public function AddOfferBundle(Request $request){
-        dd($request);
+        // dd($request);
+        $title = $request->title;
+        $type = $request->type;
+        $entities = json_encode($request->select);
+        $parent_id = ($request->cat_id) ? $request->cat_id : 0;
+        /*if($type != "Subcategory"){
+            $parent_id = 0;
+        }else{
+            $parent_id = $request->cat_id;
+        }
+        $arr = array(
+            "type"      =>    $type,
+            "parent_id" =>    $parent_id,
+            "entities"  =>    json_encode($entities),
+        );
+        dd($arr);*/
+
+        $data = new OfferBundles;
+        $data->title = $title;
+        $data->type = $type;
+        $data->bundle = $entities;
+        $data->parent_id = $parent_id;
+        $data->save ();
+        return ["successMsg" => "Offer Bundle Added Successfully"];
     }
 }
