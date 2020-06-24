@@ -20,10 +20,11 @@ class OfferController extends Controller
     	return view("office.offers.index");
     }
 
-    public function DynamicPricing(){
+    public function DynamicPricings(){
     	$bundle = OfferBundles::get();
     	$location = LocationGroup::get();
-    	return view("office.offers.dynamic_price.index", compact("bundle", "location"));
+        $pricing = DynamicPricing::get();
+    	return view("office.offers.dynamic_price.index", compact("bundle", "location", "pricing"));
     }
 
     public function Vouchers(){

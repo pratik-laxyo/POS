@@ -21,14 +21,14 @@
           </thead>
           <tbody>
           	@if(!empty($bundles))
-          		@foreach($bundles as $bundle)
+          		@foreach($bundles as $key => $bundle)
 		            <tr id="{{ $bundle->id }}" role="row" class="odd">
-		                <td class="sorting_1">{{ $bundle->id }}</td>
+		                <td class="sorting_1">{{ $bundle->id." ".$key }}</td>
 		                <td>{{ $bundle->title }}</td>
 		                <td>{{ $bundle->type }}</td>
 		                <td>
 		                	@if(!empty($cat))
-			                	@foreach($cat as $cats) 
+			                	@foreach($cat[$key] as $cats) 
 			                		@if($bundle->type == "Category")
 			                			@if(!empty($cats->category_name))
 			                				{{ $cats->category_name.", " }}
@@ -50,8 +50,6 @@
 		                </td>
 		                <td></td>
 		            </tr>
-
-
 		        @endforeach
 		    @endif
           </tbody>

@@ -48,19 +48,20 @@ class ControlPanel extends Controller
 
     public function OfferBundle(Request $request){
         $bundles = OfferBundles::get();
-        foreach ($bundles as $val) {
-            $type = $val->type;
-            $data = json_decode($val->bundle);
-            foreach ($data as $value) {
-                $id = $value;
-                if($type == "Category"){
-                    $cat[] = MciCategory::where("id", $id)->first();
-                }
-                if($type == "Subcategory"){
-                    $cat[] = MciSubCategory::where("id", $id)->first();
-                }
-                if($type == "Brand"){
-                    $cat[] = MciBrand::where("id", $id)->first();
+        if(!empty($bundles)){
+            foreach ($bundles as $val) {
+                $type = $val->type;
+                $data = json_decode($val->bundle);
+                if(!empty($data)){
+                    if($type == "Category"){
+                        $cat[] = MciCategory::whereIn("id", $data)->get();
+                    }
+                    if($type == "Subcategory"){
+                        $cat[] = MciSubCategory::whereIn("id", $data)->get();
+                    }
+                    if($type == "Brand"){
+                        $cat[] = MciBrand::whereIn("id", $data)->get();
+                    }
                 }
             }
         }
@@ -71,9 +72,12 @@ class ControlPanel extends Controller
     public function GroupLocation(Request $request){
         $shop = Shop::get();
         $location = LocationGroup::get();
-        foreach ($location as $key => $val) {
-            $data = json_decode($val->location);
-            $location_name[] = Shop::whereIn("id", $data)->get();
+        $location_name = array();
+        if(!empty($location)){
+            foreach ($location as $key => $val) {
+                $data = json_decode($val->location);
+                $location_name[] = Shop::whereIn("id", $data)->get();
+            }
         }
         return view("manager.control_panel.group_location", compact("shop", "location", "location_name"));
     }

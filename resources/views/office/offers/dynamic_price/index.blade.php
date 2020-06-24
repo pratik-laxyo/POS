@@ -26,14 +26,19 @@
             </thead>
             <tbody>
                <tr role="row" class="odd">
-                  <td class="sorting_1">1</td>
-                  <td>LaxyoHouse</td>
-                  <td>xyz</td>
-                  <td>7854123690</td>
-                  <td>lh@laxyo.in</td>
-                  <td>lh@laxyo.in</td>
-                  <td>lh@laxyo.in</td>
-                  <td></td>
+                  @if(!empty($pricing))
+                     @foreach($pricing as $pricings)
+                     <?php dd($pricings); ?>
+                        <td class="sorting_1">{{ pricings->id }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                     @endforeach
+                  @endif
                </tr>
             </tbody>
          </table>
@@ -50,7 +55,7 @@
             </div>
             <div class="modal-body">
                <form id="PricingAdd">
-               	  @csrf			    
+               	@csrf			    
                   <div class="form-group">
                      <label for="title">Title</label>
                      <input type="text" class="form-control" id="title" name="title" placeholder="Title">
@@ -81,13 +86,13 @@
                      <div class="col-md-6">
                         <div class="form-group">
                            <label for="start_date">Start Date</label>
-                           <input type="date" name="start_date" class="form-control" id="start_date" placeholder="Start Date">
+                           <input type="datetime-local" name="start_date" class="form-control" id="start_date">
                         </div>
                      </div>
                      <div class="col-md-6">
                         <div class="form-group">
                            <label for="end_date">End Date</label>
-                           <input type="date" name="end_date" class="form-control" id="end_date" placeholder="End Date">
+                           <input type="datetime-local" name="end_date" class="form-control" id="end_date">
                         </div>
                      </div>
                   </div>
@@ -156,19 +161,18 @@
 	    messages: {
 	    },
   		submitHandler: function(form) {
-  			alert($("#PricingAdd").serialize());
 			$.ajax({
       			type: "post",
       			url: "add_pricing",
       			data: $("#PricingAdd").serialize(),
       			success: function(data){
-      				alert(data);
-      				/*$('#locationAdd').trigger("reset");
+      				// alert(data);
+      				$('#locationAdd').trigger("reset");
       				$('#AddPricing').modal("hide");
       				$("#successMsg").html(data.successMsg).delay(2000).fadeOut();
       				setTimeout(function() {
 					    location.reload();
-					}, 2000);*/
+					}, 2000);
       			}
       		});
 		}

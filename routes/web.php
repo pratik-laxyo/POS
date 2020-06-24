@@ -98,7 +98,7 @@ Route::get('custom_tab', 'Manager\ControlPanel\ControlPanel@CustomTab')->name('c
 /* Offers */
 Route::resource('offers', 'Office\Offer\OfferController');
 	/* Dynamic Pricing */
-	Route::get('view_dynamic_pricing', 'Office\Offer\OfferController@DynamicPricing')->name('view_dynamic_pricing');
+	Route::get('view_dynamic_pricing', 'Office\Offer\OfferController@DynamicPricings')->name('view_dynamic_pricing');
 	Route::post('add_pricing', 'Office\Offer\OfferController@AddPricing')->name('add_pricing');
 	/* Dynamic Pricing */
 	
