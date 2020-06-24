@@ -47,7 +47,6 @@ Route::resource('/mci-brand', 'Manager\MCIBrandController');
 
 Route::resource('/office', 'Office\OfficeController');
 Route::resource('shop', 'Office\Shop\ShopController');
-Route::resource('offers', 'Office\Offer\OfferController');
 Route::get('test', 'Office\Shop\ShopController@testUser')->name('test');
 
 
@@ -90,4 +89,25 @@ Route::get('custom_tab', 'Manager\ControlPanel\ControlPanel@CustomTab')->name('c
 	Route::post('get_list', 'Manager\ControlPanel\ControlPanel@GetOfferBundleTypes')->name('get_list');
 	/* Offer Bundle */	
 
+	/* Group Locations */
+	Route::post('add_locations', 'Manager\ControlPanel\ControlPanel@AddLocationGroup')->name('add_locations');
+	/* Group Locations */	
+
 /* control Panel */
+
+/* Offers */
+Route::resource('offers', 'Office\Offer\OfferController');
+	/* Dynamic Pricing */
+	Route::get('view_dynamic_pricing', 'Office\Offer\OfferController@DynamicPricing')->name('view_dynamic_pricing');
+	Route::post('add_pricing', 'Office\Offer\OfferController@AddPricing')->name('add_pricing');
+	/* Dynamic Pricing */
+	
+	/* Vouchers */	
+	Route::get('view_vouchers', 'Office\Offer\OfferController@Vouchers')->name('view_vouchers');
+	/* Vouchers */	
+
+	/* Purchase Limits */
+	Route::get('view_purchase_limits', 'Office\Offer\OfferController@PurchaseLimits')->name('view_purchase_limits');
+	/* Purchase Limits */
+
+/* Offers */

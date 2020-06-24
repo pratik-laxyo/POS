@@ -13,7 +13,7 @@
                         <div class="card" style="background-image: linear-gradient(to bottom,#01e6e647, #00c3cc); min-height:200px;">
                            <br>
                            <h3>Dynamic Pricing</h3>
-                           <h1><a href="http://newpos.dbfindia.com/offers/view_dynamic_pricing" target="_blank" title="Dynamic Pricing"><span class="fa fa-tags" style="color: white;"></span></a></h1>
+                           <h1><a href="{{ route('view_dynamic_pricing') }}" target="_blank" title="Dynamic Pricing"><span class="fa fa-tags" style="color: white;"></span></a></h1>
                            <br>
                         </div>
                      </center>
@@ -25,7 +25,7 @@
                         <div class="card" style="background: linear-gradient(to bottom,#ccb3006e, #ffcc66);min-height:200px;">
                            <br>
                            <h3>Vouchers</h3>
-                           <h1><a href="http://newpos.dbfindia.com/offers/view_vouchers" target="_blank" title="Vouchers"><span class="fa fa-briefcase" style="color: white;"></span></a></h1>
+                           <h1><a href="{{ route('view_vouchers') }}" target="_blank" title="Vouchers"><span class="fa fa-briefcase" style="color: white;"></span></a></h1>
                            <br>
                         </div>
                      </center>
@@ -37,7 +37,7 @@
                         <div class="card" style="background-image: linear-gradient(to bottom,#efb1ab, #f77b7b);background-color: #f77b7b;min-height:200px;">
                            <br>
                            <h3>Purchase Limits</h3>
-                           <h1><a href="http://newpos.dbfindia.com/offers/view_purchase_limits" target="_blank" title="Purchase Limits"><span class="fa fa-qrcode" style="color: white;"></span></a></h1>
+                           <h1><a href="{{ route('view_purchase_limits') }}" target="_blank" title="Purchase Limits"><span class="fa fa-qrcode" style="color: white;"></span></a></h1>
                            <br>
                         </div>
                      </center>

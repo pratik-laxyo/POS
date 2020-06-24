@@ -8,6 +8,7 @@ use App\Models\Manager\ControlPanel\Cashier;
 use App\Models\Manager\ControlPanel\CashierShop;
 use App\Models\Manager\ControlPanel\CustomTab;
 use App\Models\Manager\ControlPanel\OfferBundles;
+use App\Models\Manager\ControlPanel\LocationGroup;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Office\Shop\Shop;
 use App\Models\Manager\MciCategory;
@@ -48,16 +49,33 @@ class ControlPanel extends Controller
     public function OfferBundle(Request $request){
         $bundles = OfferBundles::get();
         foreach ($bundles as $val) {
-            # code...
+            $type = $val->type;
+            $data = json_decode($val->bundle);
+            foreach ($data as $value) {
+                $id = $value;
+                if($type == "Category"){
+                    $cat[] = MciCategory::where("id", $id)->first();
+                }
+                if($type == "Subcategory"){
+                    $cat[] = MciSubCategory::where("id", $id)->first();
+                }
+                if($type == "Brand"){
+                    $cat[] = MciBrand::where("id", $id)->first();
+                }
+            }
         }
         $category = MciCategory::get();
-
-        return view("manager.control_panel.offer_bundle", compact('category', 'bundles'));
+        return view("manager.control_panel.offer_bundle", compact('category', 'bundles', 'cat'));
     }
 
     public function GroupLocation(Request $request){
-        $cashier = Cashier::get();
-        return view("manager.control_panel.group_location");
+        $shop = Shop::get();
+        $location = LocationGroup::get();
+        foreach ($location as $key => $val) {
+            $data = json_decode($val->location);
+            $location_name[] = Shop::whereIn("id", $data)->get();
+        }
+        return view("manager.control_panel.group_location", compact("shop", "location", "location_name"));
     }
 
     public function CustomTab(Request $request){
@@ -254,5 +272,16 @@ class ControlPanel extends Controller
         $data->parent_id = $parent_id;
         $data->save ();
         return ["successMsg" => "Offer Bundle Added Successfully"];
+    }
+
+    public function AddLocationGroup(Request $request){
+        $title = $request->title;
+        $location = json_encode($request->location);
+
+        $data = new LocationGroup;
+        $data->title = $title;
+        $data->location = $location;
+        $data->save ();
+        return ["successMsg" => "Location Added Successfully"];
     }
 }

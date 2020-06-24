@@ -26,7 +26,28 @@
 		                <td class="sorting_1">{{ $bundle->id }}</td>
 		                <td>{{ $bundle->title }}</td>
 		                <td>{{ $bundle->type }}</td>
-		                <td>{{ $bundle->bundle }}</td>
+		                <td>
+		                	@if(!empty($cat))
+			                	@foreach($cat as $cats) 
+			                		@if($bundle->type == "Category")
+			                			@if(!empty($cats->category_name))
+			                				{{ $cats->category_name.", " }}
+			                			@endif
+			                		@endif
+			                		@if($bundle->type == "Subcategory")
+				                		@if(!empty($cats->sub_categories_name))
+				                			{{ $cats->sub_categories_name.", " }}
+				                		@endif
+			                		@endif
+			                		@if($bundle->type == "Brand")
+				                		@if(!empty($cats->brand_name))
+				                			{{ $cats->brand_name.", " }}
+				                		@endif
+			                		@endif
+			                 	@endforeach
+			                @else
+			                @endif
+		                </td>
 		                <td></td>
 		            </tr>
 
