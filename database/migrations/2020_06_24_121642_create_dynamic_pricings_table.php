@@ -18,8 +18,8 @@ class CreateDynamicPricingsTable extends Migration
             $table->string("title");
             $table->integer("location")->default("0");
             $table->integer("pointer")->default("0");
-            $table->string("start_date");
-            $table->string("end_date");
+            $table->timestamps("start_date");
+            $table->timestamps("end_date");
             $table->float("discount", 8, 2);
             $table->integer("status")->default("0");
             $table->timestamps();

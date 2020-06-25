@@ -104,10 +104,15 @@ Route::resource('offers', 'Office\Offer\OfferController');
 	
 	/* Vouchers */	
 	Route::get('view_vouchers', 'Office\Offer\OfferController@Vouchers')->name('view_vouchers');
+	Route::post('add_voucher', 'Office\Offer\OfferController@AddVouchers')->name('add_voucher');
+	Route::put('update_voucher', 'Office\Offer\OfferController@UpdateVouchers')->name('update_voucher');
+	Route::post('print_voucher', 'Office\Offer\OfferController@PrintVouchers')->name('print_voucher');
+	Route::get('view_voucher', 'Office\Offer\OfferController@ViewVouchers')->name('view_voucher');
 	/* Vouchers */	
 
 	/* Purchase Limits */
 	Route::get('view_purchase_limits', 'Office\Offer\OfferController@PurchaseLimits')->name('view_purchase_limits');
+	Route::post('add_limits', 'Office\Offer\OfferController@AddPurchaseLimit')->name('add_limits');
 	/* Purchase Limits */
 
 /* Offers */

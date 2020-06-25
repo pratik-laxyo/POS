@@ -7,42 +7,45 @@
             <div class="text-center successMsg" id="successMsg"></div>
          </div>
          <div class="col-md-2">
-            <button class="btn btn-info btn-sm pull-right modal-dlg" data-toggle="modal" data-target="#AddPricing" title="New Shop"><span class="glyphicon glyphicon-user">&nbsp;</span>New Shop</button>
+            <button class="btn btn-info btn-sm pull-right modal-dlg" data-toggle="modal" data-target="#AddPricing" title="New Shop"><span class="glyphicon glyphicon-user">&nbsp;</span>New Pricing</button>
          </div>
       </div>
-      <div id="tbldata">
-         <table id="table" class="table table-hover table-bordered table-striped dataTable no-footer" role="grid" aria-describedby="table_info">
-            <thead id="table-sticky-header">
-               <tr>
-                  <th role="row">S.No.</th>
-                  <th>Pointer</th>
-                  <th>Location</th>
-                  <th>Title</th>
-                  <th>Discount</th>
-                  <th>Start Time</th>
-                  <th>End Time</th>
-                  <th>Status</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr role="row" class="odd">
-                  @if(!empty($pricing))
-                     @foreach($pricing as $pricings)
-                     <?php dd($pricings); ?>
-                        <td class="sorting_1">{{ pricings->id }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                     @endforeach
-                  @endif
-               </tr>
-            </tbody>
-         </table>
-      </div>   
+      <table id="table" class="table table-hover table-bordered table-striped dataTable no-footer" role="grid" aria-describedby="table_info">
+         <thead id="table-sticky-header">
+            <tr>
+               <th role="row">S.No.</th>
+               <th>Pointer</th>
+               <th>Location</th>
+               <th>Title</th>
+               <th>Discount</th>
+               <th>Start Time</th>
+               <th>End Time</th>
+               <th>Status</th>
+            </tr>
+         </thead>
+         <tbody>
+            @if(!empty($pricing))
+               @foreach($pricing as $pricings)
+                  <tr role="row" class="odd">
+                     <td class="sorting_1">{{ $pricings->id }}</td>
+                     <td>{{ $pricings['pointers']->title }}</td>
+                     <td>{{ $pricings['locations']->title }}</td>
+                     <td>{{ $pricings->title }}</td>
+                     <td>{{ $pricings->discount }}</td>
+                     <td>{{ $pricings->start_date }}</td>
+                     <td>{{ $pricings->end_date }}</td>
+                     <td>
+                        @if($pricings->status == 0)
+                           <span class="dot1"></span>
+                        @else
+                           <span class="dot2"></span>
+                        @endif
+                     </td>
+                  </tr>
+               @endforeach
+            @endif
+         </tbody>
+      </table>
    </div>
    <!-- Add Modal -->
    <div class="modal bootstrap-dialog modal-dlg type-primary fade size-normal in" id="AddPricing" role="dialog">
@@ -108,11 +111,24 @@
    </div>
    <!-- Modal -->
 </div>
-</div>
 <style type="text/css">
 	/*.datepicker-days{
 		display: block !important;
 	}*/
+   .dot2 {
+      height: 15px;
+      width: 15px;
+      background-color: #00FF00;
+      border-radius: 50%;
+      display: inline-block;
+   }
+   .dot1 {
+       height: 15px;
+       width: 15px;
+       background-color: #FF0000;
+       border-radius: 50%;
+       display: inline-block;
+   }
 </style>
 <script type="text/javascript">
 	
