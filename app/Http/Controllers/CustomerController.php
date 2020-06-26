@@ -160,7 +160,7 @@ class CustomerController extends Controller
         return Excel::download(new CustomersExport, 'customers.xlsx');
     }
 
-     public function exportPhonenumber() 
+    public function exportPhonenumber() 
     {
         return Excel::download(new CustomersPhoneExport, 'customers-phone.xlsx');
     }

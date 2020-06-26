@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePurchaseLimitersTable extends Migration
+class CreateListActionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreatePurchaseLimitersTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_limiters', function (Blueprint $table) {
+        Schema::create('list_actions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('category_id')->default("0");
-            $table->integer('limit_count')->default("0");
-            $table->integer('status')->default("0");
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ class CreatePurchaseLimitersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_limiters');
+        Schema::dropIfExists('list_actions');
     }
 }

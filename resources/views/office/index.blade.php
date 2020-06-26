@@ -20,6 +20,10 @@
 				Employees</a>
 			</div>
 			<div class="module_item" title="Add, Update, Delete, and Search Employees.">
+				<a href="{{ route('configuration.index') }}"><img src="{{ asset('dbf-style/images/menubar/config.png') }}" border="0" alt="Menubar Image"><br>
+				Configuration</a>
+			</div>
+			<div class="module_item" title="Add, Update, Delete, and Search Employees.">
 				<a href="{{ route('offers.index') }}"><img src="{{ asset('dbf-style/images/menubar/offers.png') }}" border="0" alt="Menubar Image"><br>
 				Offers</a>
 			</div>

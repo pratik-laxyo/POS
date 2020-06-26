@@ -47,6 +47,7 @@ Route::resource('/mci-brand', 'Manager\MCIBrandController');
 
 Route::resource('/office', 'Office\OfficeController');
 Route::resource('shop', 'Office\Shop\ShopController');
+Route::resource('configuration', 'Office\Configuration\ConfigurationController');
 Route::get('test', 'Office\Shop\ShopController@testUser')->name('test');
 
 
@@ -59,41 +60,55 @@ Route::post('fetch_item', 'Item\ItemController@fetchData')->name('fetch_item');
 Route::post('excel_import', 'Item\ItemController@excelImportItems')->name('excel_import');
 /* Items */
 
-/* control Panel */
-Route::resource('control_panel', 'Manager\ControlPanel\ControlPanel');
-Route::get('cashier', 'Manager\ControlPanel\ControlPanel@Cashier')->name('cashier');
-Route::get('cashier_detail', 'Manager\ControlPanel\ControlPanel@CashierDetail')->name('cashier_detail');
-Route::get('offer_bundle', 'Manager\ControlPanel\ControlPanel@OfferBundle')->name('offer_bundle');
-Route::get('group_location', 'Manager\ControlPanel\ControlPanel@GroupLocation')->name('group_location');
-Route::get('custom_tab', 'Manager\ControlPanel\ControlPanel@CustomTab')->name('custom_tab');
 
-	/* cashier_details */
-	Route::post('add_cashier', 'Manager\ControlPanel\ControlPanel@AddCashierDetail')->name('add_cashier');
-	Route::post('update_status', 'Manager\ControlPanel\ControlPanel@UpdateCashierStatusDetail')->name('update_status');
-	Route::put('update_cashier', 'Manager\ControlPanel\ControlPanel@UpdateCashierDetail')->name('update_cashier');
-	/* cashier_details */
+/* Managers */
+	/* control Panel */
+	Route::resource('control_panel', 'Manager\ControlPanel\ControlPanel');
+	Route::get('cashier', 'Manager\ControlPanel\ControlPanel@Cashier')->name('cashier');
+	Route::get('cashier_detail', 'Manager\ControlPanel\ControlPanel@CashierDetail')->name('cashier_detail');
+	Route::get('offer_bundle', 'Manager\ControlPanel\ControlPanel@OfferBundle')->name('offer_bundle');
+	Route::get('group_location', 'Manager\ControlPanel\ControlPanel@GroupLocation')->name('group_location');
+	Route::get('custom_tab', 'Manager\ControlPanel\ControlPanel@CustomTab')->name('custom_tab');
 
-	/* cashier */
-	Route::post('cashier_shop', 'Manager\ControlPanel\ControlPanel@UpdateCashierShop')->name('cashier_shop');
-	Route::post('fetch', 'Manager\ControlPanel\ControlPanel@fetchCashierShop')->name('fetch');
-	/* cashier */
+		/* cashier_details */
+		Route::post('add_cashier', 'Manager\ControlPanel\ControlPanel@AddCashierDetail')->name('add_cashier');
+		Route::post('update_status', 'Manager\ControlPanel\ControlPanel@UpdateCashierStatusDetail')->name('update_status');
+		Route::put('update_cashier', 'Manager\ControlPanel\ControlPanel@UpdateCashierDetail')->name('update_cashier');
+		/* cashier_details */
 
-	/* Custom Tab */
-	Route::post('custom', 'Manager\ControlPanel\ControlPanel@UpdateCustomTab')->name('custom');
-	Route::post('fetchCustom', 'Manager\ControlPanel\ControlPanel@UpdateFetchCustomData')->name('fetchCustom');
-	Route::post('custom_status', 'Manager\ControlPanel\ControlPanel@UpdateCustomStatus')->name('custom_status');
-	/* Custom Tab */
+		/* cashier */
+		Route::post('cashier_shop', 'Manager\ControlPanel\ControlPanel@UpdateCashierShop')->name('cashier_shop');
+		Route::post('fetch', 'Manager\ControlPanel\ControlPanel@fetchCashierShop')->name('fetch');
+		/* cashier */
 
-	/* Offer Bundle */
-	Route::post('add_bundle', 'Manager\ControlPanel\ControlPanel@AddOfferBundle')->name('add_bundle');
-	Route::post('get_list', 'Manager\ControlPanel\ControlPanel@GetOfferBundleTypes')->name('get_list');
-	/* Offer Bundle */	
+		/* Custom Tab */
+		Route::post('custom', 'Manager\ControlPanel\ControlPanel@UpdateCustomTab')->name('custom');
+		Route::post('fetchCustom', 'Manager\ControlPanel\ControlPanel@UpdateFetchCustomData')->name('fetchCustom');
+		Route::post('custom_status', 'Manager\ControlPanel\ControlPanel@UpdateCustomStatus')->name('custom_status');
+		/* Custom Tab */
 
-	/* Group Locations */
-	Route::post('add_locations', 'Manager\ControlPanel\ControlPanel@AddLocationGroup')->name('add_locations');
-	/* Group Locations */	
+		/* Offer Bundle */
+		Route::post('add_bundle', 'Manager\ControlPanel\ControlPanel@AddOfferBundle')->name('add_bundle');
+		Route::post('get_list', 'Manager\ControlPanel\ControlPanel@GetOfferBundleTypes')->name('get_list');
+		/* Offer Bundle */	
 
-/* control Panel */
+		/* Group Locations */
+		Route::post('add_locations', 'Manager\ControlPanel\ControlPanel@AddLocationGroup')->name('add_locations');
+		/* Group Locations */	
+
+	/* control Panel */
+
+	/* Extras */
+	Route::resource('extras', 'Manager\Extras\Extras');
+	Route::post('quickdata', 'Manager\Extras\Extras@QuickConvert')->name('quickdata');
+	/* Extras */
+
+	/* Extras */
+	Route::resource('list_actions', 'Manager\ListAction\ListAction');
+	Route::post('download', 'Manager\ListAction\ListAction@CSVDownload')->name('download');
+	/* Extras */
+
+/* Managers */
 
 /* Offers */
 Route::resource('offers', 'Office\Offer\OfferController');
@@ -113,6 +128,10 @@ Route::resource('offers', 'Office\Offer\OfferController');
 	/* Purchase Limits */
 	Route::get('view_purchase_limits', 'Office\Offer\OfferController@PurchaseLimits')->name('view_purchase_limits');
 	Route::post('add_limits', 'Office\Offer\OfferController@AddPurchaseLimit')->name('add_limits');
+	Route::post('update__limiter_status', 'Office\Offer\OfferController@UpdateLimitStatus')->name('update__limiter_status');	
+	Route::put('update_limit_counts', 'Office\Offer\OfferController@UpdateLimitCounts')->name('update_limit_counts');	
 	/* Purchase Limits */
 
 /* Offers */
+
+

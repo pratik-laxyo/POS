@@ -114,4 +114,18 @@ class OfferController extends Controller
         $data->limit_count = $plimit_count;
         $data->save();
     }
+
+    public function UpdateLimitStatus(Request $request){
+        if($request->status == '0'){
+            PurchaseLimiter::where('id', $request->id)->update(['status'=> '1']);
+        }else{
+            PurchaseLimiter::where('id', $request->id)->update(['status'=> '0']);            
+        }
+    }
+
+    public function UpdateLimitCounts(Request $request){
+        $limit = $request->plimit_count;
+        $id = $request->id;
+        PurchaseLimiter::where('id', $id)->update(['limit_count'=> $limit]); 
+    }
 }

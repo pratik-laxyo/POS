@@ -38,22 +38,54 @@
                @if(!empty($limits))
                   @foreach($limits as $limit)
                      <div class="panel-body">
-                        <a href="#" title="Edit" class="modal-dlg">{{ $limit['limits_category']->category_name }} | {{ $limit->limit_count }}</a>
+                        <a href="#" class="modal-dlg" data-toggle="modal"  data-target="#UpdateVoucher{{ $limit->id }}" title="Edit">{{ $limit['limits_category']->category_name }} | {{ $limit->limit_count }}</a>
+
                         <span class="pull-right" id="1">
-                           <style>
-                              .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
-                              .toggle.ios .toggle-handle { border-radius: 20px; }
-                           </style>
-                           <div class="toggle btn btn-success btn-xs ios" data-toggle="toggle" style="width: 34px; height: 22px;">
-                              <input type="checkbox" class="plimit_toggle" checked="" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-style="ios" data-size="mini">
-                              <div class="toggle-group">
-                                 <label class="btn btn-success btn-xs toggle-on">On</label>
-                                 <label class="btn btn-danger btn-xs active toggle-off">Off</label>
-                                 <span class="toggle-handle btn btn-default btn-xs"></span>
-                              </div>
-                           </div>
+                           <input onchange="updateStatus('{{ $limit->id }}', '{{ $limit->status }}')" value="{{ $limit->status }}" class="toggle-one" name="status" @if($limit->status == '0') checked @endif type="checkbox" data-size="mini">
                         </span>
                      </div>
+
+                     <!-- Update Modal -->
+                     <div class="modal bootstrap-dialog modal-dlg type-primary fade size-normal in" id="UpdateVoucher{{ $limit->id }}" role="dialog">
+                         <div class="modal-dialog">
+                           <!-- Modal content-->
+                           <div class="modal-content">
+                             <div class="modal-header">
+                               <button type="button" class="close" data-dismiss="modal">&times;</button>
+                               <h4 class="modal-title">UPDATE Voucher</h4>
+                             </div>
+                             <div class="modal-body">
+                                <form id="EditVoucher{{ $limit->id }}">
+                                 @csrf
+                                 @method('PUT')
+                                  <div class="form-group">
+                                      <label for="plimit_count">Update Limits</label>
+                                      <input type="number" name="plimit_count" class="form-control" value="{{ $limit->limit_count }}">
+                                      <input type="hidden" name="id" class="form-control" value="{{ $limit->id }}">
+                                  </div>
+                                  <button type="submit" name="submit" class="btn btn-primary" style="float: right">UPDATE</button>
+                              </form>
+                             </div>
+                           </div>   
+                         </div>
+                     </div>
+                     <!-- Modal -->
+
+                     <script type="text/javascript">
+                        $("document").ready(function(){
+                           $("#EditVoucher{{ $limit->id }}").on("submit", function(e){
+                              e.preventDefault();
+                              $.ajax({
+                                 type: "put",
+                                 url: "update_limit_counts",
+                                 data: $("#EditVoucher{{ $limit->id }}").serialize(),
+                                 success: function(data){
+                                    location.reload();
+                                 }
+                              });
+                           });
+                        });
+                     </script>
                   @endforeach
                @endif
             </div>
@@ -61,6 +93,7 @@
       </div>
       <script>
          $(document).ready( function () {
+            $('.toggle-one').bootstrapToggle();
             $("#addLimits").on("submit", function(e){
                e.preventDefault();
                $.ajax({
@@ -74,6 +107,18 @@
                });
             });
          });
+
+         function updateStatus(id, status){
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+               method: "POST",
+               url: "update__limiter_status",
+               data: { id:id, status:status, _token:_token },
+               success: function(data){
+                  console.log(data);
+               }
+            });
+         }
       </script>
    </div>
 </div>

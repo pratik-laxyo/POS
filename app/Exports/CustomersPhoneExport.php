@@ -13,7 +13,7 @@ class CustomersPhoneExport implements FromCollection, WithHeadings
     public function collection()
     {
         return Customer::all([
-            'ID',
+            'id',
             'phone_number',
             
         ]);
@@ -21,7 +21,7 @@ class CustomersPhoneExport implements FromCollection, WithHeadings
 	public function headings(): array
     {
         return [
-            'ID',
+            'id',
             'PHONE NUMBER',
         ];
     }

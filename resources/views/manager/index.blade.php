@@ -194,7 +194,7 @@
 			<div class="card" style="background: linear-gradient(to bottom,#ccb3006e, #ffcc66);min-height:200px;">
 				<br>
 				<h3>List Actions</h3>
-				<h1><a href="http://newpos.dbfindia.com/manager/load_tab_view/list_actions" title="List Actions"><span class="fa fa-briefcase" style="color: white;"></span></a></h1>
+				<h1><a href="{{ route('list_actions.index') }}" title="List Actions"><span class="fa fa-briefcase" style="color: white;"></span></a></h1>
 				<br>
 			</div>
 			</center>
@@ -243,13 +243,13 @@
 			<div class="card" style="background: linear-gradient(to bottom,#01e6e647, #00c3cc);min-height:200px;">
 				<br>
 				<h3>Extras</h3>
-				<h1><a href="http://newpos.dbfindia.com/manager/load_tab_view/extras" title="Cashiers"><span class="fa fa-cog" style="color: white;"></span></a></h1>
+				<h1><a href="{{ route('extras.index') }}" title="Cashiers"><span class="fa fa-cog" style="color: white;"></span></a></h1>
 				<br>
 			</div>
 			</center>
 		</div>
 	</div>
-	<div class="col-sm-3">
+	<!-- <div class="col-sm-3">
 		<div class="column">
 			<center>       
 			<div class="card" style="background-image: linear-gradient(to bottom,#fbefd6, #ffcc66);background-color: #f77b7b;min-height:200px;">
@@ -260,7 +260,7 @@
 			</div>
 			</center>
 		</div>
-	</div>
+	</div> -->
 	<div class="col-sm-3">
 		<div class="column">
 			<center>       
