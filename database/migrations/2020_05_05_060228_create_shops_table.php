@@ -20,6 +20,8 @@ class CreateShopsTable extends Migration
             $table->string('contact_no');
             $table->string('email');
             $table->string('shop_address');
+            $table->integer('role_id')->default("0");
+            $table->integer('user_id')->default("0");
             $table->string('custom1')->nullable();
             $table->string('custom2')->nullable();
             $table->string('custom3')->nullable();

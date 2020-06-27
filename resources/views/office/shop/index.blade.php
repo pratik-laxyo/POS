@@ -50,7 +50,7 @@
 						<div class="col-md-6">
 						    <div class="form-group">
 						        <label for="email">Email Address</label>
-						        <input type="email" name="email" class="form-control" id="email" placeholder="EMAIL ADDRESS">
+						        <input type="text" name="email" class="form-control" id="email" placeholder="EMAIL ADDRESS">
 						        <div id="emailErr" class="registeredMsg"></div>
 						    </div>
 				    	</div>
@@ -59,6 +59,28 @@
 				    <div class="form-group">
 				        <label for="shop_address">Shop Address</label>
 				        <textarea name="shop_address" id="shop_address" class="form-control" placeholder="SHOP ADDRESS"></textarea>
+				    </div>
+
+				    <div class="row">
+				    	<div class="col-md-6">
+				    		<div class="form-group">
+						        <label for="role_id">Role</label>
+						        <select class="form-control" name="role_id" id="role_id">
+						        	<option disabled="" selected="">Select Roles</option>
+						        	@if(!empty($role))
+						        		@foreach($role as $roles)
+						        			<option value="{{ $roles->id }}">{{ $roles->display_name }}</option>
+						        		@endforeach
+						        	@endif
+						        </select>
+						    </div>
+						</div>
+						<div class="col-md-6">
+						    <div class="form-group">
+						        <label for="password">Password</label>
+				        		<input type="text" class="form-control" name="password" id="password" placeholder="Password">
+						    </div>
+				    	</div>
 				    </div>
 
 				    <button type="submit" name="submit" class="btn btn-primary" style="float: right">ADD</button>
@@ -72,8 +94,80 @@
 </div>
 
 <script type="text/javascript">
+	$.validator.addMethod("mobile_regex", function(value, element) {
+		return this.optional(element) || /^\d{10}$/i.test(value);
+	}, "Please Enter No Only.");
+	
+	$.validator.addMethod("password_regex", function(value, element) {
+		return this.optional(element) || /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/i.test(value);
+	}, "Password must contain at least 1 lowercase, 1 uppercase, 1 numeric and 1 special character");
+	
+	$.validator.addMethod("email_regex", function(value, element) {
+		return this.optional(element) || /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/i.test(value);
+	}, "The Email Address Is Not Valid Or In The Wrong Format");
+	
+	$.validator.addMethod("name_regex", function(value, element) {
+		return this.optional(element) || /^[a-zA-Z ]{2,100}$/i.test(value);
+	}, "Please choose a name with only a-z 0-9.");
+	
+	$("#CreateShop").validate({
+	  	errorElement: 'p',
+    	errorClass: 'help-inline',
+		
+		rules: {
+	      shop_name:{
+	      	required:true,
+	      	name_regex:true
+	      },
+	      shop_owner_name:{
+	      	required:true,
+	      	name_regex:true
+	      },
+	      contact_no:{
+	      	required:true,
+	      	mobile_regex:true
+	      },
+	      email:{
+	      	required:true,
+	      	email_regex:true
+	      },
+	      shop_address:{
+	      	required:true,
+	      },
+	      password:{
+	      	required:true,
+	      },
+	    },
+	    
+	    messages: {
+	    },
+  		submitHandler: function(form) {
+  			$("#contactErr").html("");
+		    $("#emailErr").html("");
+	 		$.ajax({
+		        type: 'post',
+		        url: '{{ route("shop.store") }}',
+		        data: $('#CreateShop').serialize(),
+		        success: function(data) {
+		            $("#contactErr").html(data.contactErr);
+		            $("#emailErr").html(data.emailErr);
+		            if(data.successMsg){
+			            $("#CreateShop").trigger("reset");
+			            $("#AddShop").modal("hide");
+			            $("#tbldata").load("{{ 'test' }}");
+				        $("#successMsg").html(data.successMsg).delay(2000).fadeOut();
+			            setTimeout(function() {
+						    location.reload();
+						}, 2000);
+					}
+		        },
+		    });
+  		}
+  	});
+
+
   	$(document).ready(function() {
-      	$("#CreateShop").on('submit', function(e) {
+      	/*$("#CreateShop").on('submit', function(e) {
 	   		e.preventDefault();
 	   		$("#contactErr").html("");
 		    $("#emailErr").html("");
@@ -95,7 +189,7 @@
 					}
 		        },
 		    });
-		});
+		});*/
 
 		@if(!empty($shop))
 			@foreach($shop as $index => $shops)

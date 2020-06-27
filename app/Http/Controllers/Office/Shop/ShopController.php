@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Office\Shop;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Office\Shop\Shop;
+use App\Models\Role;
+use Hash;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -23,7 +26,8 @@ class ShopController extends Controller
     public function index()
     {
         $shop = Shop::all();
-            return view("office.shop.index",compact('shop'));
+        $role = Role::all();
+        return view("office.shop.index",compact('shop', 'role'));
     }
 
     /**
@@ -58,13 +62,26 @@ class ShopController extends Controller
         }
         else
         {
-            $data = new Shop;
-            $data->shop_name = $request->input('shop_name');
-            $data->shop_owner_name = $request->input('shop_owner_name');
-            $data->contact_no = $request->input('contact_no');
-            $data->email = $request->input('email');
-            $data->shop_address = $request->input('shop_address');
-            $data->save ();
+            $userTable = [
+                'name' => $request->shop_name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ];
+            $user = User::create($userTable);
+            $LastInsertId = $user->id;
+            if(!empty($LastInsertId)){
+                $data = new Shop;
+                $data->shop_name = $request->input('shop_name');
+                $data->shop_owner_name = $request->input('shop_owner_name');
+                $data->contact_no = $request->input('contact_no');
+                $data->email = $request->input('email');
+                $data->shop_address = $request->input('shop_address');
+                $data->role_id = $request->input('role_id');
+                $data->user_id = $LastInsertId;
+                $data->save ();
+            }
+            $user->attachRole($request->role_id);
+
             return ["successMsg" => "Shop Added Successfully"];
         }
     }

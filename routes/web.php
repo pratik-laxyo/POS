@@ -105,7 +105,9 @@ Route::post('excel_import', 'Item\ItemController@excelImportItems')->name('excel
 
 	/* Extras */
 	Route::resource('list_actions', 'Manager\ListAction\ListAction');
-	Route::post('download', 'Manager\ListAction\ListAction@CSVDownload')->name('download');
+	Route::get('download', 'Manager\ListAction\ListAction@CSVDownload')->name('download');
+	Route::post('getListActionMCI', 'Manager\ListAction\ListAction@GettListActionMCI')->name('getListActionMCI');
+	Route::post('get_listaction_data', 'Manager\ListAction\ListAction@GettListActionData')->name('get_listaction_data');
 	/* Extras */
 
 /* Managers */
