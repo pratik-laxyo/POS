@@ -85,6 +85,8 @@ Route::post('excel_import', 'Item\ItemController@excelImportItems')->name('excel
 		Route::post('custom', 'Manager\ControlPanel\ControlPanel@UpdateCustomTab')->name('custom');
 		Route::post('fetchCustom', 'Manager\ControlPanel\ControlPanel@UpdateFetchCustomData')->name('fetchCustom');
 		Route::post('custom_status', 'Manager\ControlPanel\ControlPanel@UpdateCustomStatus')->name('custom_status');
+
+		Route::post('cashier_auth', 'Manager\ControlPanel\ControlPanel@cashier_auth')->name('cashier_auth');
 		/* Custom Tab */
 
 		/* Offer Bundle */
@@ -136,4 +138,25 @@ Route::resource('offers', 'Office\Offer\OfferController');
 
 /* Offers */
 
+/* Receivings */
+Route::resource('/receivings', 'Receivings\ReceivingsController');
+Route::post('/get-item', 'Receivings\ReceivingsController@getItem')->name('get-item');
+Route::post('/updateQty', 'Receivings\ReceivingsController@updateQty')->name('updateQty');
+Route::get('/view-manage-transfer', 'Receivings\ReceivingsController@viewManageTransfer')->name('view-manage-transfer');
+Route::post('/all-chalances', 'Receivings\ReceivingsController@allChalances')->name('all-chalances');
+/* End Receivings */
+
+/* Sales */
+Route::resource('/sales', 'Sales\SalesController');
+Route::post('/get-sale-item', 'Sales\SalesController@getSaleItem')->name('get-sale-item');
+Route::post('/get-customer', 'Sales\SalesController@getCustomer')->name('get-customer');
+Route::post('/add-customer', 'Sales\SalesController@addCustomer')->name('add-customer');
+Route::post('/store-customer', 'Sales\SalesController@storeCustomer')->name('store-customer');
+Route::post('/customer-cert-destroy/{id}', 'Sales\SalesController@customerCertDestroy')->name('customer-cert-destroy');
+Route::post('/updatSaleItemeQty', 'Sales\SalesController@updateQty')->name('updatSaleItemeQty');
+Route::resource('/sales-manage', 'Sales\SalesManageController');
+Route::get('/sales-invoice/{id}','Sales\SalesManageController@salesInvoice')->name('sales-invoice');
+Route::post('/cert-items','Sales\SalesManageController@certItems')->name('cert-items');
+Route::post('/igst-tax','Sales\SalesManageController@IgstTax')->name('igst-tax');
+/* End Sales */
 

@@ -21,13 +21,8 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $employees = Employees::with('usersInfo')->get();
-=======
-       $employees = Employees::with('usersInfo')->get();
         // dd($employees);
-
->>>>>>> 71f51671f159b15b9a024a3da862e24529a325e6
         return view("office.employees.index",compact('employees'));
     }
 
@@ -75,12 +70,7 @@ class EmployeesController extends Controller
        $userLogin['language'] = $request->language;
 
        $emLogin = EmployeesLogin::create($userLogin)->id;
-<<<<<<< HEAD
         // dd($userLogin['password']);
-=======
-    // dd($userLogin['password']);
->>>>>>> 71f51671f159b15b9a024a3da862e24529a325e6
-
         return back()->with('success','added Successfully');
     }
 
@@ -120,7 +110,6 @@ class EmployeesController extends Controller
                 'first_name'=>'required',
                 'last_name'=>'required',
                 'phone_number'=>'required'
-
         ]);
         $data['gender'] = $request->gender;
         $data['email'] = $request->email;
@@ -132,7 +121,7 @@ class EmployeesController extends Controller
         $data['country'] = $request->country;
         $data['comments'] = $request->comments;
 
-      $post = Employees::find($id)->update($data);
+        $post = Employees::find($id)->update($data);
         return back()->with('success','Update Successfully');
     }
 

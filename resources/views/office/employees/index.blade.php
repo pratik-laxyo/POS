@@ -7,15 +7,7 @@
 			<button class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/employees/view" title="New Employee"  data-toggle="modal" data-target="#addCustomer">
 				<span class="glyphicon glyphicon-user">&nbsp;</span>New Employee	
 			</button>
-			<div id="title_bar" class="btn-toolbar">
-				<button class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="Submit" data-href="http://newpos.dbfindia.com/employees/view" title="New Employee"  data-toggle="modal" data-target="#addCustomer">
-					<span class="glyphicon glyphicon-user">&nbsp;</span>New Employee	
-				</button>
-
-				<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/employees/get_datatable">Data Table</a>
-				<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/manager/fetch_valid_customers_contact_no">Contact Numbers</a>
-			</div>
-
+			
 			<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/employees/get_datatable">Data Table</a>
 			<a class="btn btn-info btn-sm " href="http://newpos.dbfindia.com/manager/fetch_valid_customers_contact_no">Contact Numbers</a>
 		</div>
